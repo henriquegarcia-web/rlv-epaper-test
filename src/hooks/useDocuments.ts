@@ -1,79 +1,115 @@
+'use client'
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import axios, { AxiosResponse } from 'axios'
+import { DocumentData, DocumentRequest } from '@/utils/schemas/document'
+import axios from 'axios'
 
-// Tipo do Documento
-interface Document {
-  id: string
-  name: string
-  origem: string
-  tipo: string
-  arquivo: string
-  createdAt?: string
-  updatedAt?: string
-}
+const api = axios.create({
+  baseURL: '/api/documents'
+})
 
-// Dados para criar ou atualizar um Documento
-type DocumentInput = Omit<Document, 'id' | 'createdAt' | 'updatedAt'>
-
-export const useDocuments = () => {
+export function useDocuments() {
   const queryClient = useQueryClient()
 
-  // Query para buscar os documentos
-  const { data: documents, isLoading } = useQuery<Document[], Error>({
+  const documentsQuery = useQuery<DocumentData[]>({
     queryKey: ['documents'],
     queryFn: async () => {
-      const response = await axios.get<Document[]>('/api/documents')
+      const { data } = await api.get('/')
+      return data
+    },
+    staleTime: 1000 * 60 * 5
+  })
+
+  const getDocumentById = (id: string) => {
+    return useQuery<DocumentData>({
+      queryKey: ['document', id],
+      queryFn: async () => {
+        const { data } = await api.get(`/${id}`)
+        return data
+      },
+      enabled: !!id
+    })
+  }
+
+  const createDocumentMutation = useMutation<
+    DocumentData,
+    Error,
+    DocumentRequest
+  >({
+    mutationFn: async (documentData) => {
+      const { data } = await api.post('/', documentData)
+      return data
+    },
+    onSuccess: (newDocument) => {
+      queryClient.invalidateQueries({ queryKey: ['documents'] })
+
+      queryClient.setQueryData(
+        ['documents'],
+        (oldData: DocumentData[] | undefined) => [
+          ...(oldData || []),
+          newDocument
+        ]
+      )
+    }
+  })
+
+  const updateDocumentMutation = useMutation<
+    DocumentData,
+    Error,
+    { id: string; data: Partial<DocumentRequest> }
+  >({
+    mutationFn: async ({ id, data }) => {
+      const response = await api.put(`/${id}`, data)
       return response.data
-    }
-  })
-
-  // Mutation para criar um documento
-  const createDocument = useMutation<
-    AxiosResponse<{ id: string }>, // Resposta esperada
-    Error, // Tipo de erro
-    DocumentInput // Dados de entrada
-  >({
-    mutationFn: async (newDoc) => {
-      return axios.post('/api/documents', newDoc)
     },
-    onSuccess: () => {
+    onSuccess: (updatedDocument) => {
       queryClient.invalidateQueries({ queryKey: ['documents'] })
+      queryClient.invalidateQueries({
+        queryKey: ['document', updatedDocument.id]
+      })
+
+      queryClient.setQueryData(
+        ['document', updatedDocument.id],
+        updatedDocument
+      )
     }
   })
 
-  // Mutation para atualizar um documento
-  const updateDocument = useMutation<
-    AxiosResponse<{ success: boolean }>, // Resposta esperada
-    Error, // Tipo de erro
-    { id: string } & DocumentInput // Dados de entrada (id + DocumentInput)
-  >({
-    mutationFn: async ({ id, ...data }) => {
-      return axios.put(`/api/documents/${id}`, data)
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['documents'] })
-    }
-  })
-
-  // Mutation para deletar um documento
-  const deleteDocument = useMutation<
-    AxiosResponse<{ success: boolean }>, // Resposta esperada
-    Error, // Tipo de erro
-    string // ID do documento a ser deletado
-  >({
+  const deleteDocumentMutation = useMutation<void, Error, string>({
     mutationFn: async (id) => {
-      return axios.delete(`/api/documents/${id}`)
+      await api.delete(`/${id}`)
     },
-    onSuccess: () => {
+    onSuccess: (_, deletedId) => {
       queryClient.invalidateQueries({ queryKey: ['documents'] })
+
+      queryClient.removeQueries({ queryKey: ['document', deletedId] })
     }
   })
 
   return {
-    documents,
-    isLoading,
-    createDocument,
-    updateDocument,
-    deleteDocument
+    documents: documentsQuery.data,
+    isLoadingDocuments: documentsQuery.isLoading,
+    documentsError: documentsQuery.error,
+
+    getDocumentById,
+
+    createDocument: {
+      mutate: createDocumentMutation.mutate,
+      isPending: createDocumentMutation.isPending,
+      isError: createDocumentMutation.isError,
+      error: createDocumentMutation.error
+    },
+    updateDocument: {
+      mutate: updateDocumentMutation.mutate,
+      isPending: updateDocumentMutation.isPending,
+      isError: updateDocumentMutation.isError,
+      error: updateDocumentMutation.error
+    },
+    deleteDocument: {
+      mutate: deleteDocumentMutation.mutate,
+      isPending: deleteDocumentMutation.isPending,
+      isError: deleteDocumentMutation.isError,
+      error: deleteDocumentMutation.error
+    }
   }
 }

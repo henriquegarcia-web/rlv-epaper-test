@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { DocumentRepository } from '@/repositories/document-repository'
-import { DocumentSchema } from '@/utils/validation'
+import { DocumentSchema } from '@/utils/schemas/document'
 
 const documentRepository = new DocumentRepository()
 

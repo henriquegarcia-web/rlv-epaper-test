@@ -1,26 +1,23 @@
 'use client'
 
-import { DocumentData } from '@/types/document'
-// import { useDocuments } from '@/hooks/useDocuments'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+
+import { useDocuments } from '@/hooks/useDocuments'
 
 export default function Home() {
-  const [documents, setDocuments] = useState<DocumentData[]>([])
-
-  useEffect(() => {
-    async function fetchDocuments() {
-      const response = await fetch('/api/documents')
-      const data = await response.json()
-      setDocuments(data)
-    }
-    fetchDocuments()
-  }, [])
+  const {
+    documents,
+    isLoadingDocuments,
+    createDocument,
+    updateDocument,
+    deleteDocument
+  } = useDocuments()
 
   useEffect(() => {
     console.log(documents)
   }, [documents])
 
-  // if (isLoading) return <p>Loading...</p>
+  if (isLoadingDocuments) return <div>Carregando...</div>
 
   return <div className=""></div>
 }
