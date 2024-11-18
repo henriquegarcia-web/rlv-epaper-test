@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { DocumentRequest, DocumentData } from '@/types/document'
+import { DocumentRequest, DocumentData } from '@/utils/schemas/document'
 
 export class DocumentRepository {
   async create(data: DocumentRequest): Promise<DocumentData> {

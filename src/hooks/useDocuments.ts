@@ -1,12 +1,9 @@
 'use client'
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { DocumentData, DocumentRequest } from '@/utils/schemas/document'
-import axios from 'axios'
 
-const api = axios.create({
-  baseURL: '/api/documents'
-})
+import { DocumentData, DocumentRequest } from '@/utils/schemas/document'
+import { api } from '@/lib/axios'
 
 export function useDocuments() {
   const queryClient = useQueryClient()
