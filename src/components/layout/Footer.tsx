@@ -1,7 +1,9 @@
 interface IFooterProps {}
 
 const Footer: React.FC<IFooterProps> = ({}) => {
-  return <div className="flex w-full"></div>
+  return (
+    <footer className="flex w-full h-[var(--admin-footer-h)] border border-white-500"></footer>
+  )
 }
 
 export default Footer
