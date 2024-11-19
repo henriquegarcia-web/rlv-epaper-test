@@ -14,6 +14,7 @@ export default {
         footer: '#F9FAFB',
         'border-primary': '#E5E7EB',
         'color-primary': '#191e29',
+        'color-secondary': '#3A424E',
         'color-legend': '#6B7280',
         'active-primary': '#caffd6',
         'active-secondary': '#f3f4f6'

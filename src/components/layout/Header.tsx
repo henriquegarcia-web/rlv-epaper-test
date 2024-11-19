@@ -1,4 +1,4 @@
-import { Logo, ToggleSideMenu } from '@/components'
+import { Logo, Navigation, ToggleSideMenu } from '@/components'
 
 interface IHeaderProps {}
 
@@ -10,6 +10,9 @@ const Header: React.FC<IHeaderProps> = ({}) => {
       </div>
       <div className="flex items-center h-full px-[10px] border-r border-r-border-primary">
         <Logo type="default" />
+      </div>
+      <div className="flex items-center h-full px-[10px]">
+        <Navigation />
       </div>
     </header>
   )

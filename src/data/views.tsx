@@ -1,4 +1,4 @@
-import { HiOutlineChartPie } from 'react-icons/hi'
+import { LuFileText } from 'react-icons/lu'
 import { DocumentsView } from '@/views'
 
 export interface IView {
@@ -17,7 +17,7 @@ const viewsData: IView[] = [
     viewPath: 'documentos',
     viewLabel: 'Documentos',
     viewComponent: <DocumentsView />,
-    viewIcon: <HiOutlineChartPie />,
+    viewIcon: <LuFileText />,
     viewActive: true,
     viewVisible: true
   }
