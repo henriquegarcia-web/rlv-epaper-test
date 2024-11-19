@@ -1,4 +1,5 @@
 import { HiOutlineChartPie } from 'react-icons/hi'
+import { DocumentsView } from '@/views'
 
 export interface IView {
   viewId: string
@@ -15,7 +16,7 @@ const viewsData: IView[] = [
     viewId: 'view_documents',
     viewPath: 'documentos',
     viewLabel: 'Documentos',
-    viewComponent: <></>,
+    viewComponent: <DocumentsView />,
     viewIcon: <HiOutlineChartPie />,
     viewActive: true,
     viewVisible: true
