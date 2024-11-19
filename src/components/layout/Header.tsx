@@ -9,7 +9,7 @@ const Header: React.FC<IHeaderProps> = ({}) => {
         <ToggleSideMenu />
       </div>
       <div className="flex items-center h-full px-[10px] border-r border-r-border-primary">
-        <Logo />
+        <Logo type="default" />
       </div>
     </header>
   )
