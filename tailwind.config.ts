@@ -11,6 +11,8 @@ export default {
       colors: {
         background: '#f1f1f1',
         foreground: '#ffffff',
+        footer: '#F9FAFB',
+        'border-primary': '#E5E7EB',
         'color-primary': '#191e29',
         'active-primary': '#caffd6',
         'active-secondary': '#f3f4f6'

@@ -12,7 +12,7 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
   return (
     <div
       className={clsx(
-        'fixed top-admin-header left-0 flex h-admin-content border border-white-500 bg-foreground transition-all duration-300',
+        'fixed top-admin-header left-0 flex h-admin-content border-r border-r-border-primary bg-foreground transition-all duration-300',
         {
           'w-admin-sidemenu': !isSideMenuOpen,
           'w-admin-sidemenu-open': isSideMenuOpen

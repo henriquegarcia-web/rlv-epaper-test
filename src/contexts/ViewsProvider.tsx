@@ -9,8 +9,7 @@ export interface IViewsContextData {
   activeView: string
   handleChangeActiveView: (viewId: string) => void
   isSideMenuOpen: boolean
-  handleOpenSideMenu: () => void
-  handleCloseSideMenu: () => void
+  handleToggleSideMenu: () => void
 }
 
 export const ViewsContext = createContext<IViewsContextData>(
@@ -32,8 +31,7 @@ const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
   const [activeView, setActiveView] = useState<string>(viewsData[0].viewPath)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
 
-  const handleOpenSideMenu = () => setIsSideMenuOpen(true)
-  const handleCloseSideMenu = () => setIsSideMenuOpen(false)
+  const handleToggleSideMenu = () => setIsSideMenuOpen(!isSideMenuOpen)
 
   const handleChangeActiveView = (viewPath: string) => {
     router.push(ADMIN_BASE_URL + viewPath)
@@ -48,8 +46,7 @@ const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
       activeView,
       handleChangeActiveView,
       isSideMenuOpen,
-      handleOpenSideMenu,
-      handleCloseSideMenu
+      handleToggleSideMenu
     }
   }, [activeView, isSideMenuOpen])
 
