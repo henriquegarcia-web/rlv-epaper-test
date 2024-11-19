@@ -9,35 +9,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#1D4ED8',
-        secondary: '#9333EA',
-        accent: '#F59E0B',
-        muted: '#6B7280',
-        background: '#F3F4F6'
+        background: '#f1f1f1',
+        foreground: '#ffffff',
+        'color-primary': '#191e29',
+        'active-primary': '#caffd6',
+        'active-secondary': '#f3f4f6'
+      },
+      spacing: {
+        'admin-header': '72px',
+        'admin-footer': '56px',
+        'admin-sidemenu': '64px',
+        'admin-sidemenu-open': '252px',
+        'admin-sidemenu-open-mobile': '364px'
+      },
+      height: {
+        'admin-content': 'calc(100vh - 72px)'
+      },
+      width: {
+        'admin-content': 'calc(100% - 64px)'
       }
-      // spacing: {
-      //   '72': '18rem',
-      //   '84': '21rem',
-      //   '96': '24rem',
-      //   '108': '27rem'
-      // },
-      // fontFamily: {
-      //   sans: ['Inter', 'sans-serif'],
-      //   serif: ['Merriweather', 'serif']
-      // },
-      // borderRadius: {
-      //   '4xl': '2rem'
-      // },
-      // boxShadow: {
-      //   'outline-primary': '0 0 0 3px rgba(29, 78, 216, 0.5)'
-      // },
-      // zIndex: {
-      //   '-10': '-10'
-      // },
-      // transitionProperty: {
-      //   height: 'height',
-      //   spacing: 'margin, padding'
-      // }
     }
   },
   plugins: []

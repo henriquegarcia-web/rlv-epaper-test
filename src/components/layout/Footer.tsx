@@ -2,7 +2,7 @@ interface IFooterProps {}
 
 const Footer: React.FC<IFooterProps> = ({}) => {
   return (
-    <footer className="flex w-full h-[var(--admin-footer-h)] border border-white-500"></footer>
+    <footer className="flex w-full h-admin-footer border border-white-500"></footer>
   )
 }
 
