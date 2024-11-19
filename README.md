@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-Paper Management System | Teste Técnico RLV Tecnologia
 
-## Getting Started
+> Desenvolvido por: **Henrique Garcia** <br/>
+> Empresa: **[RLV Tecnologia](https://rlvtecnologia.com.br)** <br/>
+> Data de início: **18/11/2024** <br/>
+> Data de término: **Em desenvolvimento**
 
-First, run the development server:
+## Visão Geral
+
+Uma aplicação web robusta para gerenciamento de documentos digitais (e-paper), desenvolvida com foco em performance, segurança e experiência do usuário.
+
+## 🚀 Funcionalidades
+
+- Gerenciamento completo de documentos digitais
+- Upload e organização de documentos
+- Sistema de busca e filtragem avançado
+- Interface responsiva e intuitiva
+- Autenticação e controle de acesso
+
+## 💻 Tecnologias Principais
+
+- **Framework**: Next.js 14
+- **Linguagem**: TypeScript
+- **Estilização**:
+  - Tailwind CSS
+  - Shadcn/UI
+- **Banco de Dados**: PostgreSQL
+- **ORM**: Prisma
+- **Comunicação API**: ts-rest
+- **State Management**: React Query
+- **Validação**: Zod
+
+## 📦 Instalação e Configuração
+
+### Pré-requisitos
+
+- Node.js (v18+)
+- npm ou yarn
+- PostgreSQL
+
+### Passos de Instalação
+
+1. Clone o repositório
+
+```bash
+git clone https://github.com/henriquegarcia-web/rlv-epaper-management.git
+cd rlv-epaper-management
+```
+
+2. Instale as dependências
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+3. Configure as variáveis de ambiente
+
+- Crie um arquivo `.env` na raiz do projeto
+- Adicione as configurações de banco de dados:
+
+```
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/rlv_epaper"
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
+
+4. Inicialize o Prisma
+
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+5. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Testes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run test
+# ou
+yarn test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔒 Segurança e Boas Práticas
 
-## Learn More
+- Tipagem forte com TypeScript
+- Validações de schema com Zod
+- Comunicação de API tipada com ts-rest
+- ORM Prisma para prevenção de SQL Injection
 
-To learn more about Next.js, take a look at the following resources:
+## 📊 Estrutura do Projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+/src
+├── app/
+│   ├── api/
+│   └── documents/
+├── components/
+├── contracts/
+├── hooks/
+├── lib/
+├── repositories/
+└── utils/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contribuição
 
-## Deploy on Vercel
+1. Fork do projeto
+2. Crie sua branch (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Licença
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Projeto sob licença privada da RLV Tecnologia.
+
+## 📞 Contato
+
+**RLV Tecnologia**
+
+- Website: [https://rlvtecnologia.com.br](https://rlvtecnologia.com.br)
+- Email: contato@rlvtecnologia.com.br
+
+---
+
+**Desenvolvido com ❤️ por Henrique Garcia para RLV Tecnologia**
+
+Gostaria que eu detalhasse alguma seção específica do README?
