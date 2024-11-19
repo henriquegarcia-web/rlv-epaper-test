@@ -1,0 +1,59 @@
+'use client'
+
+import { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+
+import { viewsData } from '@/data/views'
+
+export interface ViewsContextData {
+  activeView: string
+  handleChangeActiveView: (viewId: string) => void
+}
+
+export const ViewsContext = createContext<ViewsContextData>(
+  {} as ViewsContextData
+)
+
+function getLastWordFromPath(path: string) {
+  const pathParts = path.split('/')
+  const lastWord = pathParts[pathParts.length - 1]
+  return lastWord
+}
+
+const ADMIN_BASE_URL = '/admin/'
+
+const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const [activeView, setActiveView] = useState(viewsData[0].viewPath)
+
+  const handleChangeActiveView = (viewPath: string) => {
+    router.push(ADMIN_BASE_URL + viewPath)
+  }
+
+  useEffect(() => {
+    setActiveView(getLastWordFromPath(pathname))
+  }, [router, pathname])
+
+  return (
+    <ViewsContext.Provider
+      value={{
+        activeView,
+        handleChangeActiveView
+      }}
+    >
+      {children}
+    </ViewsContext.Provider>
+  )
+}
+
+function useViews(): ViewsContextData {
+  const context = useContext(ViewsContext)
+
+  if (!context) throw new Error('useViews must be used within a UserProvider')
+
+  return context
+}
+
+export { ViewsProvider, useViews }

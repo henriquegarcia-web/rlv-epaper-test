@@ -1,4 +1,4 @@
-// import { AdminProviders } from './providers'
+import { AdminProviders } from './providers'
 
 export default function AdminLayout({
   children
@@ -7,9 +7,7 @@ export default function AdminLayout({
 }) {
   return (
     <>
-      {/* <AdminProviders> */}
-      {children}
-      {/* </AdminProviders> */}
+      <AdminProviders>{children}</AdminProviders>
     </>
   )
 }
