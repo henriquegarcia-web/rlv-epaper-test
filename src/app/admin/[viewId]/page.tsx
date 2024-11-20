@@ -15,7 +15,5 @@ export default function View() {
     return <div>View not found</div>
   }
 
-  const viewComponent = getComponentByViewId(params.viewId)
-
-  return <div className="">{viewComponent}</div>
+  return getComponentByViewId(params.viewId)
 }
