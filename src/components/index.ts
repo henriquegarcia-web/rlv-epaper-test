@@ -13,6 +13,8 @@ import Avatar from './ui/Avatar'
 import Modal from './ui/Modal'
 import Drawer from './ui/Drawer'
 import FilterButton from './ui/FilterButton'
+import BoxInformation from './ui/BoxInformation'
+import Backdrop from './ui/Backdrop'
 import Template from './ui/Template'
 
 import {
@@ -50,6 +52,8 @@ export {
   Drawer,
   FilterDrawer,
   FilterButton,
+  BoxInformation,
+  Backdrop,
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,

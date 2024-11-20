@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import clsx from 'clsx'
-import { Button } from '@/components'
+import { Backdrop, Button } from '@/components'
 import { useViews } from '@/contexts/ViewsProvider'
 import { IView, viewsData } from '@/data/views'
 
@@ -74,10 +74,7 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
         </nav>
       </div>
       {isSideMenuOpen && (
-        <div
-          className="!z-[10] fixed top-admin-header left-0 flex w-full h-admin-content backdrop-blur-[2px]"
-          onClick={handleToggleSideMenu}
-        />
+        <Backdrop type="light" handleCloseBackdrop={handleToggleSideMenu} />
       )}
     </>
   )
