@@ -1,6 +1,8 @@
 'use client'
 
-import { Drawer } from '@/components'
+import { LuInfo } from 'react-icons/lu'
+
+import { DocumentsFilterForm, Drawer } from '@/components'
 import { useViews } from '@/contexts/ViewsProvider'
 
 interface IFilterDrawerProps {}
@@ -16,7 +18,16 @@ const FilterDrawer: React.FC<IFilterDrawerProps> = ({}) => {
         isDrawerOpen={isFilterDrawerOpen}
         handleCloseDrawer={handleToggleFilterDrawer}
       >
-        <div></div>
+        <div className="flex flex-col gap-[15px] w-full">
+          <div className="flex gap-[12px] p-[15px] rounded-[6px] border border-border-primary [&_svg]:size-[18px] [&_svg]:shrink-0 [&_svg]:text-color-secondary">
+            <LuInfo />
+            <span className="flex flex-1 text-[14px] leading-[18px] text-color-legend">
+              Selecione o tipo de documento necessário para, a partir dele,
+              selecionar os tipos de índice para a filtragem.
+            </span>
+          </div>
+          <DocumentsFilterForm />
+        </div>
       </Drawer>
       {isFilterDrawerOpen && (
         <div

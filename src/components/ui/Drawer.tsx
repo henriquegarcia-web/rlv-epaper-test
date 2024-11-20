@@ -19,7 +19,7 @@ const Drawer: React.FC<IDrawerProps> = ({
   return (
     <div
       className={clsx(
-        '!z-[150] fixed top-0 right-0 flex flex-col w-admin-filterdrawer-open h-full p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
+        '!z-[150] fixed top-0 right-0 flex flex-col gap-[20px] w-admin-filterdrawer-open h-full p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
         {
           'right-[-390px]': !isDrawerOpen,
           'right-0': isDrawerOpen
@@ -44,7 +44,7 @@ const Drawer: React.FC<IDrawerProps> = ({
           </button>
         </div>
       </div>
-      <div>{children}</div>
+      <div className="flex w-full">{children}</div>
     </div>
   )
 }

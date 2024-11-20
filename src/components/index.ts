@@ -2,6 +2,7 @@ import Footer from './layout/Footer'
 import Header from './layout/Header'
 import SideMenu from './layout/SideMenu'
 import FilterDrawer from './layout/FilterDrawer'
+import DocumentsFilterForm from './layout/DocumentsFilterForm'
 
 import Logo from './ui/Logo'
 import ToggleSideMenu from './ui/ToggleSideMenu'
@@ -38,6 +39,7 @@ export {
   Footer,
   Header,
   SideMenu,
+  DocumentsFilterForm,
   Logo,
   ToggleSideMenu,
   Navigation,
