@@ -12,18 +12,21 @@ const buttonVariants = cva(
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline:
-          'bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[22px]',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+
+        outline:
+          'border border-border-primary bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[18px] font-bold text-[14px]',
+        icon: 'bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[22px]',
         menu: 'justify-start pl-[14px] text-[14px] bg-foreground text-color-secondary hover:bg-accent [&_svg]:size-[16px]'
       },
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
+        outline: 'h-[40px] px-[14px]',
         icon: 'h-[40px] w-[40px]',
         menu: 'h-[40px] w-full'
       }
@@ -49,7 +52,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }), {
           'bg-accent hover:bg-accent hover:text-accent-foreground':
-            active && variant === 'outline',
+            active && variant === 'icon',
           'bg-active-primary text-color-secondary hover:bg-active-primary hover:text-accent-foreground':
             active && variant === 'menu'
         })}

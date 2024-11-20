@@ -28,6 +28,7 @@ import {
   DropdownMenuRadioGroup
 } from './ui/DropdownMenu'
 import { Button, buttonVariants } from './ui/Button'
+import { Input } from './ui/Input'
 
 export {
   Footer,
@@ -56,5 +57,6 @@ export {
   DropdownMenuRadioGroup,
   Button,
   buttonVariants,
+  Input,
   Template
 }

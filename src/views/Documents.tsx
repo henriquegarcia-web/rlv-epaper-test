@@ -1,5 +1,9 @@
 // 'use client'
 
+import { LuSearch, LuFilter } from 'react-icons/lu'
+
+import { Button, Input } from '@/components'
+
 // import { useEffect } from 'react'
 
 // import { useDocuments } from '@/hooks/useDocuments'
@@ -30,7 +34,15 @@ export default function DocumentsView() {
             Crie, gerencie e visualize os documentos
           </p>
         </div>
-        <div></div>
+        <div className="flex items-center gap-[14px]">
+          <div className="w-[280px]">
+            <Input placeholder="Buscar documentos" icon={<LuSearch />} />
+          </div>
+          <Button variant="outline" size="outline">
+            <LuFilter />
+            Filtrar
+          </Button>
+        </div>
       </div>
     </div>
   )

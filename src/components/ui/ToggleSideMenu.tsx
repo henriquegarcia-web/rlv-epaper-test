@@ -13,7 +13,7 @@ const ToggleSideMenu: React.FC<IToggleSideMenuProps> = ({}) => {
 
   return (
     <Button
-      variant="outline"
+      variant="icon"
       size="icon"
       active={isSideMenuOpen}
       onClick={handleToggleSideMenu}
