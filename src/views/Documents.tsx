@@ -24,7 +24,7 @@ export default function DocumentsView() {
   // if (isLoadingDocuments) return <div>Carregando...</div>
 
   return (
-    <div className="flex flex-col w-full h-full py-[30px] px-[20px] bg-foreground">
+    <div className="flex flex-col w-full h-full pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
       <div className="flex justify-between w-full pb-[20px] border-b border-b-border-primary">
         <div className="flex flex-col gap-[8px]">
           <h1 className="text-[24px] leading-[24px] font-bold text-color-secondary">
@@ -44,6 +44,7 @@ export default function DocumentsView() {
           </Button>
         </div>
       </div>
+      <div className="flex flex-1 border border-red-500"></div>
     </div>
   )
 }
