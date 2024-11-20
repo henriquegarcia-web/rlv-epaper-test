@@ -1,18 +1,16 @@
 import { LuBell, LuBellDot } from 'react-icons/lu'
 
+import { Button } from '@/components'
+
 interface INotificationsProps {}
 
 const Notifications: React.FC<INotificationsProps> = ({}) => {
   const hasNotifications = false
 
   return (
-    <div className="flex justify-center items-center w-[40px] h-[40px]">
-      {hasNotifications ? (
-        <LuBellDot className="text-[24px] text-color-primary" />
-      ) : (
-        <LuBell className="text-[24px] text-color-primary" />
-      )}
-    </div>
+    <Button variant="outline" size="icon">
+      {hasNotifications ? <LuBellDot /> : <LuBell />}
+    </Button>
   )
 }
 

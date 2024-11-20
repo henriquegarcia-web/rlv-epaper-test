@@ -10,8 +10,8 @@ interface IHeaderProps {}
 
 const Header: React.FC<IHeaderProps> = ({}) => {
   return (
-    <header className="flex justify-between items-center w-full h-admin-header py-[12px] pr-[15px] bg-foreground border-b border-b-border-primary">
-      <div className="flex items-center">
+    <header className="flex justify-between items-center w-full h-admin-header py-[12px] pr-[14px] bg-foreground border-b border-b-border-primary">
+      <div className="flex items-center h-full">
         <div className="flex w-admin-sidemenu h-full justify-center items-center">
           <ToggleSideMenu />
         </div>
@@ -22,7 +22,7 @@ const Header: React.FC<IHeaderProps> = ({}) => {
           <Navigation />
         </div>
       </div>
-      <div className="flex items-center gap-[20px]">
+      <div className="flex items-center gap-[15px] h-full">
         <Notifications />
         <UserMenu />
       </div>

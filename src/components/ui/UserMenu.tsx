@@ -15,7 +15,6 @@ import {
 import { useViews } from '@/contexts/ViewsProvider'
 
 import { IView, viewsData } from '@/data/views'
-import { getFirstName } from '@/utils/functions/formatUsername'
 
 interface IUserMenuProps {}
 
@@ -28,7 +27,7 @@ const UserMenu: React.FC<IUserMenuProps> = ({}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center gap-[10px] p-[8px] rounded-[4px] border border-border-primary cursor-pointer">
+        <div className="flex items-center gap-[10px] h-full px-[10px] rounded-[4px] border border-border-primary cursor-pointer">
           <Avatar name={userName} />
           <div className="flex flex-col">
             <b className="text-[14px] leading-[14px] text-color-primary">
@@ -38,8 +37,8 @@ const UserMenu: React.FC<IUserMenuProps> = ({}) => {
               {userOrganization}
             </p>
           </div>
-          <div className="ml-[5px]">
-            <LuChevronDown />
+          <div className="ml-[4px]">
+            <LuChevronDown className="text-[18px]" />
           </div>
         </div>
       </DropdownMenuTrigger>

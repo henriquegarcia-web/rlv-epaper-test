@@ -11,10 +11,10 @@ const Navigation: React.FC<INavigationProps> = ({}) => {
         return (
           <li
             key={nav.id}
-            className="flex items-center gap-[8px] h-full px-[10px] text-[24px] text-color-secondary cursor-pointer"
+            className="flex items-center gap-[8px] h-full px-[10px] rounded-[6px] text-[24px] text-color-secondary cursor-pointer hover:bg-accent hover:text-accent-foreground transition-all duration-200"
           >
             {nav.icon}
-            <span className="pt-[1x] text-[14px] text-color-secondary">
+            <span className="pt-[2x] text-[14px] text-color-secondary">
               {nav.label}
             </span>
           </li>
