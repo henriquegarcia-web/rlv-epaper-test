@@ -28,7 +28,7 @@ const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
   const pathname = usePathname()
 
-  const [activeView, setActiveView] = useState<string>(viewsData[0].viewPath)
+  const [activeView, setActiveView] = useState<string>(viewsData[0].path)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
 
   const handleToggleSideMenu = () => setIsSideMenuOpen(!isSideMenuOpen)

@@ -2,24 +2,24 @@ import { LuFileText } from 'react-icons/lu'
 import { DocumentsView } from '@/views'
 
 export interface IView {
-  viewId: string
-  viewPath: string
-  viewLabel: string
-  viewComponent: React.ReactNode
-  viewIcon: React.ReactNode
-  viewActive: boolean
-  viewVisible: boolean
+  id: string
+  path: string
+  label: string
+  component: React.ReactNode
+  icon: React.ReactNode
+  active: boolean
+  visible: boolean
 }
 
 const viewsData: IView[] = [
   {
-    viewId: 'view_documents',
-    viewPath: 'documentos',
-    viewLabel: 'Documentos',
-    viewComponent: <DocumentsView />,
-    viewIcon: <LuFileText />,
-    viewActive: true,
-    viewVisible: true
+    id: 'view_documents',
+    path: 'documentos',
+    label: 'Documentos',
+    component: <DocumentsView />,
+    icon: <LuFileText />,
+    active: true,
+    visible: true
   }
 ]
 

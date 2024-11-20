@@ -11,4 +11,8 @@ const formatUsername = (name: string): string => {
   }
 }
 
-export { formatUsername }
+const getFirstName = (name: string): string => {
+  return name.split(' ')[0]
+}
+
+export { formatUsername, getFirstName }

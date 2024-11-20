@@ -8,11 +8,9 @@ export default function View() {
   const params = useParams<{ viewId: string }>()
 
   const getComponentByViewId = (viewId: string) => {
-    const mainMenuView = viewsData.find(
-      (view: IView) => view.viewPath === viewId
-    )
+    const mainMenuView = viewsData.find((view: IView) => view.path === viewId)
 
-    if (mainMenuView) return mainMenuView.viewComponent
+    if (mainMenuView) return mainMenuView.component
 
     return <div>View not found</div>
   }
