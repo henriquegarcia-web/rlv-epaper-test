@@ -1,6 +1,7 @@
 import Footer from './layout/Footer'
 import Header from './layout/Header'
 import SideMenu from './layout/SideMenu'
+import FilterDrawer from './layout/FilterDrawer'
 
 import Logo from './ui/Logo'
 import ToggleSideMenu from './ui/ToggleSideMenu'
@@ -8,6 +9,9 @@ import Navigation from './ui/Navigation'
 import UserMenu from './ui/UserMenu'
 import Notifications from './ui/Notifications'
 import Avatar from './ui/Avatar'
+import Modal from './ui/Modal'
+import Drawer from './ui/Drawer'
+import FilterButton from './ui/FilterButton'
 import Template from './ui/Template'
 
 import {
@@ -40,6 +44,10 @@ export {
   UserMenu,
   Notifications,
   Avatar,
+  Modal,
+  Drawer,
+  FilterDrawer,
+  FilterButton,
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,

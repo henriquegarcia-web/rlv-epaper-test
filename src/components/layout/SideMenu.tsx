@@ -1,12 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import clsx from 'clsx'
 import { Button } from '@/components'
-
 import { useViews } from '@/contexts/ViewsProvider'
-
 import { IView, viewsData } from '@/data/views'
-import { useEffect, useState } from 'react'
 
 interface ISideMenuProps {}
 

@@ -15,6 +15,7 @@ export default {
         foreground: '#ffffff',
         footer: '#F9FAFB',
         comtainer: '#E5E7EB',
+        backdrop: '#191E29',
         'border-primary': '#E5E7EB',
         'color-primary': '#191e29',
         'color-secondary': '#3A424E',
@@ -66,7 +67,7 @@ export default {
         'admin-sidemenu': '64px',
         'admin-sidemenu-open': '252px',
         'admin-sidemenu-open-mobile': '364px',
-        '20px': '20px'
+        'admin-filterdrawer-open': '390px'
       },
       height: {
         'admin-content': 'calc(100vh - 72px)',
