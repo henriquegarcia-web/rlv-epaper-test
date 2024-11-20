@@ -2,11 +2,10 @@ import Image from 'next/image'
 
 interface ILogoProps {
   type: 'default' | 'mono'
-  width?: number
   height?: number
 }
 
-const Logo: React.FC<ILogoProps> = ({ type, width = 122, height = 40 }) => {
+const Logo: React.FC<ILogoProps> = ({ type, height = 38 }) => {
   switch (type) {
     case 'default':
       return (
@@ -14,7 +13,7 @@ const Logo: React.FC<ILogoProps> = ({ type, width = 122, height = 40 }) => {
           <Image
             src="/logo_full_default.png"
             alt="Logo"
-            width={width}
+            width={height * 3.025}
             height={height}
             priority
           />
@@ -27,7 +26,7 @@ const Logo: React.FC<ILogoProps> = ({ type, width = 122, height = 40 }) => {
           <Image
             src="/logo_full_mono.png"
             alt="Logo"
-            width={width}
+            width={height * 3.025}
             height={height}
             priority
           />

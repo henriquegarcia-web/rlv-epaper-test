@@ -8,7 +8,7 @@ const Notifications: React.FC<INotificationsProps> = ({}) => {
   const hasNotifications = false
 
   return (
-    <Button variant="outline" size="icon">
+    <Button variant="outline" size="icon" className="hidden sm:flex">
       {hasNotifications ? <LuBellDot /> : <LuBell />}
     </Button>
   )

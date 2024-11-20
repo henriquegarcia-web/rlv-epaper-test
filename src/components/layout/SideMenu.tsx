@@ -29,8 +29,9 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
         className={clsx(
           '!z-[100] fixed top-admin-header left-0 flex h-admin-content border-r border-r-border-primary bg-foreground transition-all duration-200',
           {
-            'w-admin-sidemenu': !isSideMenuOpen,
-            'w-admin-sidemenu-open': isSideMenuOpen
+            'w-full max-w-admin-sidemenu': !isSideMenuOpen,
+            'w-full max-w-admin-sidemenu-open-mobile md:max-w-admin-sidemenu-open':
+              isSideMenuOpen
           }
         )}
       >

@@ -14,7 +14,7 @@ const Navigation: React.FC<INavigationProps> = ({}) => {
             className="flex items-center gap-[8px] h-full px-[10px] rounded-[6px] text-[24px] text-color-secondary cursor-pointer hover:bg-accent hover:text-accent-foreground transition-all duration-200"
           >
             {nav.icon}
-            <span className="pt-[2x] text-[14px] text-color-secondary">
+            <span className="hidden pt-[2x] text-[14px] text-color-secondary sm:block">
               {nav.label}
             </span>
           </li>
