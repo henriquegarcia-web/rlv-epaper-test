@@ -11,7 +11,12 @@ import { useEffect, useState } from 'react'
 interface ISideMenuProps {}
 
 const SideMenu: React.FC<ISideMenuProps> = ({}) => {
-  const { activeView, handleChangeActiveView, isSideMenuOpen } = useViews()
+  const {
+    activeView,
+    handleChangeActiveView,
+    isSideMenuOpen,
+    handleToggleSideMenu
+  } = useViews()
   const [showMenuLabels, setShowMenuLabels] = useState(false)
 
   useEffect(() => {
@@ -70,7 +75,10 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
         </nav>
       </div>
       {isSideMenuOpen && (
-        <div className="!z-[10] absolute top-0 left-0 flex w-full h-admin-content backdrop-blur-[2px]"></div>
+        <div
+          className="!z-[10] absolute top-0 left-0 flex w-full h-admin-content backdrop-blur-[2px]"
+          onClick={handleToggleSideMenu}
+        />
       )}
     </div>
   )
