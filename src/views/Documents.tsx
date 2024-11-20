@@ -20,9 +20,9 @@ export default function DocumentsView() {
   // if (isLoadingDocuments) return <div>Carregando...</div>
 
   return (
-    <div className="flex flex-col w-full h-full p-[20px] bg-foreground border border-red-500">
-      <div className="flex justify-between w-full border border-red-500">
-        <div>
+    <div className="flex flex-col w-full h-full py-[30px] px-[20px] bg-foreground">
+      <div className="flex justify-between w-full pb-[20px] border-b border-b-border-primary">
+        <div className="flex flex-col gap-[8px]">
           <h1 className="text-[24px] leading-[24px] font-bold text-color-secondary">
             Documentos
           </h1>

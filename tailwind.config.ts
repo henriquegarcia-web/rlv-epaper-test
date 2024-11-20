@@ -5,7 +5,8 @@ export default {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/views/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -64,10 +65,12 @@ export default {
         'admin-footer': '56px',
         'admin-sidemenu': '64px',
         'admin-sidemenu-open': '252px',
-        'admin-sidemenu-open-mobile': '364px'
+        'admin-sidemenu-open-mobile': '364px',
+        '20px': '20px'
       },
       height: {
-        'admin-content': 'calc(100vh - 72px)'
+        'admin-content': 'calc(100vh - 72px)',
+        'admin-view': 'calc(100vh - 56px)'
       },
       width: {
         'admin-content': 'calc(100% - 64px)'

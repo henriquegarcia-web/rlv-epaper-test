@@ -4,15 +4,70 @@ import localFont from 'next/font/local'
 import '@/utils/styles/globals.css'
 import Providers from './providers'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900'
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900'
+const roboto = localFont({
+  src: [
+    {
+      path: './fonts/Roboto-Black.ttf',
+      weight: '900',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-BlackItalic.ttf',
+      weight: '900',
+      style: 'italic'
+    },
+    {
+      path: './fonts/Roboto-Bold.ttf',
+      weight: '700',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-BoldItalic.ttf',
+      weight: '700',
+      style: 'italic'
+    },
+    {
+      path: './fonts/Roboto-Light.ttf',
+      weight: '300',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-LightItalic.ttf',
+      weight: '300',
+      style: 'italic'
+    },
+    {
+      path: './fonts/Roboto-Medium.ttf',
+      weight: '700',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-MediumItalic.ttf',
+      weight: '700',
+      style: 'italic'
+    },
+    {
+      path: './fonts/Roboto-Regular.ttf',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-Italic.ttf',
+      weight: '400',
+      style: 'italic'
+    },
+    {
+      path: './fonts/Roboto-Thin.ttf',
+      weight: '100',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Roboto-ThinItalic.ttf',
+      weight: '100',
+      style: 'italic'
+    }
+  ],
+  variable: '--font-roboto'
 })
 
 export const metadata: Metadata = {
@@ -28,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} text-color-primary bg-background antialiased`}
+        className={`${roboto.variable} text-color-primary bg-background antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -29,7 +29,7 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
   }, [isSideMenuOpen])
 
   return (
-    <div className="fixed top-admin-header left-0 flex w-full h-admin-content">
+    <>
       <div
         className={clsx(
           '!z-[100] fixed top-admin-header left-0 flex h-admin-content border-r border-r-border-primary bg-foreground transition-all duration-200',
@@ -76,11 +76,11 @@ const SideMenu: React.FC<ISideMenuProps> = ({}) => {
       </div>
       {isSideMenuOpen && (
         <div
-          className="!z-[10] absolute top-0 left-0 flex w-full h-admin-content backdrop-blur-[2px]"
+          className="!z-[10] fixed top-admin-header left-0 flex w-full h-admin-content backdrop-blur-[2px]"
           onClick={handleToggleSideMenu}
         />
       )}
-    </div>
+    </>
   )
 }
 
