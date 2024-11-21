@@ -36,6 +36,19 @@ import {
 } from './ui/DropdownMenu'
 import { Button, buttonVariants } from './ui/Button'
 import { Input } from './ui/Input'
+import { Popover, PopoverTrigger, PopoverContent } from './ui/Popover'
+import { Label } from './ui/Label'
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField
+} from './ui/Form'
+import { Calendar } from './ui/Calendar'
 
 export {
   Footer,
@@ -72,5 +85,17 @@ export {
   Button,
   buttonVariants,
   Input,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Label,
+  Calendar,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
   Template
 }
