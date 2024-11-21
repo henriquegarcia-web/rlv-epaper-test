@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 // =============== DOCUMENTS FILTER ===============
 
-const DocumentsFilterFormSchema = z.object({
+const DocumentsFilterSchema = z.object({
   documentPeriod: z
     .object({
       from: z.date().optional(),
@@ -15,7 +15,7 @@ const DocumentsFilterFormSchema = z.object({
   documentNetValue: z.number().optional()
 })
 
-export type DocumentsFilterFormTypes = z.infer<typeof DocumentsFilterFormSchema>
+export type DocumentsFilterTypes = z.infer<typeof DocumentsFilterSchema>
 
 const DocumentsFilterDefaultValues = {
   documentPeriod: {
@@ -28,4 +28,23 @@ const DocumentsFilterDefaultValues = {
   documentNetValue: undefined
 }
 
-export { DocumentsFilterFormSchema, DocumentsFilterDefaultValues }
+// =============== DOCUMENTS SUB FILTER ===============
+
+const DocumentsSubFilterSchema = z.object({
+  documentOrigin: z.string().optional(),
+  documentType: z.string().optional()
+})
+
+export type DocumentsSubFilterTypes = z.infer<typeof DocumentsSubFilterSchema>
+
+const DocumentsSubFilterDefaultValues = {
+  documentOrigin: '',
+  documentType: ''
+}
+
+export {
+  DocumentsFilterSchema,
+  DocumentsFilterDefaultValues,
+  DocumentsSubFilterSchema,
+  DocumentsSubFilterDefaultValues
+}

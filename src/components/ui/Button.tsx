@@ -21,16 +21,19 @@ const buttonVariants = cva(
         outline:
           'border border-border-primary bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[18px] font-bold text-[14px]',
         icon: 'bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[22px]',
-        menu: 'justify-start pl-[14px] text-[14px] bg-foreground text-color-secondary hover:bg-accent [&_svg]:size-[16px]'
+        menu: 'justify-start pl-[14px] text-[14px] bg-foreground text-color-secondary hover:bg-accent [&_svg]:size-[16px]',
+        circle:
+          'bg-button-primary hover:opacity-85 [&_svg]:text-color-white [&_svg]:size-[26px]'
       },
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
-        primary: '',
+        primary: 'h-[40px] px-[14px]',
         outline: 'h-[40px] px-[14px]',
         icon: 'h-[40px] w-[40px]',
-        menu: 'h-[40px] w-full'
+        menu: 'h-[40px] w-full',
+        circle: 'h-[56px] w-[56px] rounded-[100px]'
       }
     },
     defaultVariants: {

@@ -1,28 +1,15 @@
-// 'use client'
+import { LuSearch } from 'react-icons/lu'
 
-import { LuSearch, LuFilter } from 'react-icons/lu'
+import {
+  DocumentsListing,
+  FilterButton,
+  FilterDrawer,
+  Input
+} from '@/components'
 
-import { Button, FilterButton, FilterDrawer, Input } from '@/components'
+interface IDocumentsViewProps {}
 
-// import { useEffect } from 'react'
-
-// import { useDocuments } from '@/hooks/useDocuments'
-
-export default function DocumentsView() {
-  // const {
-  //   documents,
-  //   isLoadingDocuments,
-  //   createDocument,
-  //   updateDocument,
-  //   deleteDocument
-  // } = useDocuments()
-
-  // useEffect(() => {
-  //   console.log(documents)
-  // }, [documents])
-
-  // if (isLoadingDocuments) return <div>Carregando...</div>
-
+const DocumentsView: React.FC<IDocumentsViewProps> = ({}) => {
   return (
     <>
       <div className="flex flex-col w-full h-full pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
@@ -42,10 +29,14 @@ export default function DocumentsView() {
             <FilterButton />
           </div>
         </div>
-        <div className="flex flex-1 border border-red-500"></div>
+        <div className="flex flex-1 border border-red-500">
+          <DocumentsListing />
+        </div>
       </div>
 
       <FilterDrawer />
     </>
   )
 }
+
+export default DocumentsView

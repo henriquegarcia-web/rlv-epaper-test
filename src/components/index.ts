@@ -3,6 +3,7 @@ import Header from './layout/Header'
 import SideMenu from './layout/SideMenu'
 import FilterDrawer from './layout/FilterDrawer'
 import DocumentsFilterForm from './layout/DocumentsFilterForm'
+import DocumentsListing from './layout/DocumentsListing'
 
 import Logo from './ui/Logo'
 import ToggleSideMenu from './ui/ToggleSideMenu'
@@ -15,6 +16,7 @@ import Drawer from './ui/Drawer'
 import FilterButton from './ui/FilterButton'
 import BoxInformation from './ui/BoxInformation'
 import Backdrop from './ui/Backdrop'
+import CreateButton from './ui/CreateButton'
 import Template from './ui/Template'
 
 import {
@@ -68,6 +70,7 @@ export {
   Header,
   SideMenu,
   DocumentsFilterForm,
+  DocumentsListing,
   Logo,
   ToggleSideMenu,
   Navigation,
@@ -122,5 +125,6 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
   Separator,
+  CreateButton,
   Template
 }

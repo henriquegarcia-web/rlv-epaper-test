@@ -38,8 +38,8 @@ import {
 } from '@/utils/functions/formatCurrency'
 import {
   DocumentsFilterDefaultValues,
-  DocumentsFilterFormSchema,
-  DocumentsFilterFormTypes
+  DocumentsFilterSchema,
+  DocumentsFilterTypes
 } from '@/utils/schemas/forms'
 
 interface IDocumentsFilterFormProps {
@@ -51,15 +51,15 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({
 }) => {
   const [date, setDate] = useState<DateRange | undefined>()
 
-  const form = useForm<DocumentsFilterFormTypes>({
-    resolver: zodResolver(DocumentsFilterFormSchema),
+  const form = useForm<DocumentsFilterTypes>({
+    resolver: zodResolver(DocumentsFilterSchema),
     defaultValues: DocumentsFilterDefaultValues
   })
 
   const watchDocumentType = form.watch('documentType')
   const isFieldsEnabled = !!watchDocumentType
 
-  const onSubmit = (data: DocumentsFilterFormTypes) => {
+  const onSubmit = (data: DocumentsFilterTypes) => {
     console.log(data)
 
     handleCloseDrawer()
@@ -217,12 +217,18 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({
         <Separator className="!my-[10px]" />
         {/* ======================================== FOOTER DO FORMULÁRIO  */}
         <div className="flex justify-end gap-[8px]">
-          <Button type="button" variant="outline" onClick={handleReset}>
+          <Button
+            type="button"
+            variant="outline"
+            size="outline"
+            onClick={handleReset}
+          >
             Limpar
           </Button>
           <Button
             type="submit"
             variant="primary"
+            size="primary"
             disabled={!form.formState.isDirty}
           >
             Aplicar filtro
