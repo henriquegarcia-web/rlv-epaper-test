@@ -22,8 +22,8 @@ const DocumentsFilterDefaultValues = {
     from: undefined,
     to: undefined
   },
-  documentType: undefined,
-  documentIssuer: undefined,
+  documentType: '',
+  documentIssuer: '',
   documentTotalTaxes: undefined,
   documentNetValue: undefined
 }

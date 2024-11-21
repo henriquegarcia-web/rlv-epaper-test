@@ -42,7 +42,13 @@ import {
   DocumentsFilterFormTypes
 } from '@/utils/schemas/forms'
 
-const DocumentsFilterForm: React.FC = () => {
+interface IDocumentsFilterFormProps {
+  handleCloseDrawer: () => void
+}
+
+const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({
+  handleCloseDrawer
+}) => {
   const [date, setDate] = useState<DateRange | undefined>()
 
   const form = useForm<DocumentsFilterFormTypes>({
@@ -55,6 +61,13 @@ const DocumentsFilterForm: React.FC = () => {
 
   const onSubmit = (data: DocumentsFilterFormTypes) => {
     console.log(data)
+
+    handleCloseDrawer()
+  }
+
+  const handleReset = () => {
+    form.reset(DocumentsFilterDefaultValues)
+    setDate(undefined)
   }
 
   return (
@@ -125,7 +138,7 @@ const DocumentsFilterForm: React.FC = () => {
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Tipo de documento</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value || ''}>
                 <FormControl>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Selecione uma opção" />
@@ -204,14 +217,7 @@ const DocumentsFilterForm: React.FC = () => {
         <Separator className="!my-[10px]" />
         {/* ======================================== FOOTER DO FORMULÁRIO  */}
         <div className="flex justify-end gap-[8px]">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => {
-              form.reset()
-              setDate(undefined)
-            }}
-          >
+          <Button type="button" variant="outline" onClick={handleReset}>
             Limpar
           </Button>
           <Button

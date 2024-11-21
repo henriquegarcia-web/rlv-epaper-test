@@ -23,7 +23,7 @@ const FilterDrawer: React.FC<IFilterDrawerProps> = ({}) => {
       >
         <div className="flex flex-col gap-[15px] w-full">
           <BoxInformation info="Selecione o tipo de documento necessário para, a partir dele, selecionar os tipos de índice para a filtragem." />
-          <DocumentsFilterForm />
+          <DocumentsFilterForm handleCloseDrawer={handleToggleFilterDrawer} />
         </div>
       </Drawer>
       {isFilterDrawerOpen && (

@@ -1,7 +1,11 @@
+'use client'
+
+import { useRef } from 'react'
 import { LuX } from 'react-icons/lu'
 
-import clsx from 'clsx'
 import { Separator } from '@/components'
+import useScrollbar from '@/hooks/useScrollbar'
+import { cn } from '@/lib/utils'
 
 interface IDrawerProps {
   title: string
@@ -18,10 +22,14 @@ const Drawer: React.FC<IDrawerProps> = ({
   handleCloseDrawer,
   children
 }) => {
+  const drawerContentRef = useRef(null)
+
+  const [containerHasScrollbar] = useScrollbar(drawerContentRef)
+
   return (
     <div
-      className={clsx(
-        '!z-[150] fixed top-0 right-0 flex flex-col gap-[10px] w-admin-filterdrawer-open h-full p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
+      className={cn(
+        '!z-[150] fixed top-0 right-0 flex flex-col gap-[10px] w-admin-filterdrawer-open h-screen p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
         {
           'right-[-390px]': !isDrawerOpen,
           'right-0': isDrawerOpen
@@ -47,7 +55,16 @@ const Drawer: React.FC<IDrawerProps> = ({
         </div>
       </div>
       <Separator className="!my-[10px]" />
-      <div className="flex w-full">{children}</div>
+      <div className="flex w-ful" style={{ height: 'calc(100vh - 145px)' }}>
+        <div
+          ref={drawerContentRef}
+          className={cn('flex w-full overflow-auto', {
+            'pr-[6px]': containerHasScrollbar
+          })}
+        >
+          {children}
+        </div>
+      </div>
     </div>
   )
 }
