@@ -19,9 +19,11 @@ export default {
         'border-primary': '#E5E7EB',
         'color-primary': '#191e29',
         'color-secondary': '#3A424E',
+        'color-white': '#ffffff',
         'color-legend': '#6B7280',
         'active-primary': '#caffd6',
         'active-secondary': '#f3f4f6',
+        'button-primary': '#05C151',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'

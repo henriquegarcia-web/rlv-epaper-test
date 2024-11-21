@@ -1,5 +1,7 @@
-import clsx from 'clsx'
 import { LuX } from 'react-icons/lu'
+
+import clsx from 'clsx'
+import { Separator } from '@/components'
 
 interface IDrawerProps {
   title: string
@@ -19,14 +21,14 @@ const Drawer: React.FC<IDrawerProps> = ({
   return (
     <div
       className={clsx(
-        '!z-[150] fixed top-0 right-0 flex flex-col gap-[20px] w-admin-filterdrawer-open h-full p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
+        '!z-[150] fixed top-0 right-0 flex flex-col gap-[10px] w-admin-filterdrawer-open h-full p-[20px] border-r border-r-border-primary bg-foreground transition-all duration-200',
         {
           'right-[-390px]': !isDrawerOpen,
           'right-0': isDrawerOpen
         }
       )}
     >
-      <div className="flex justify-between pb-[15px] border-b border-b-border-primary">
+      <div className="flex justify-between">
         <div className="flex flex-col gap-[5px]">
           <b className="text-[18px] leading-[18px] font-bold text-color-secondary">
             {title}
@@ -44,6 +46,7 @@ const Drawer: React.FC<IDrawerProps> = ({
           </button>
         </div>
       </div>
+      <Separator className="!my-[10px]" />
       <div className="flex w-full">{children}</div>
     </div>
   )

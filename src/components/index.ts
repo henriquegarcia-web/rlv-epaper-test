@@ -49,6 +49,19 @@ import {
   FormField
 } from './ui/Form'
 import { Calendar } from './ui/Calendar'
+import {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton
+} from './ui/Select'
+import { Separator } from './ui/Separator'
 
 export {
   Footer,
@@ -90,6 +103,7 @@ export {
   PopoverContent,
   Label,
   Calendar,
+  useFormField,
   Form,
   FormItem,
   FormLabel,
@@ -97,5 +111,16 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+  Separator,
   Template
 }
