@@ -18,7 +18,6 @@ import FilterButton from './ui/FilterButton'
 import BoxInformation from './ui/BoxInformation'
 import Backdrop from './ui/Backdrop'
 import CreateButton from './ui/CreateButton'
-import Table from './ui/Table'
 import Template from './ui/Template'
 
 import {
@@ -66,6 +65,17 @@ import {
   SelectScrollDownButton
 } from './ui/Select'
 import { Separator } from './ui/Separator'
+import {
+  Table,
+  TableBase,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption
+} from './ui/Table'
 
 export {
   Footer,
@@ -130,5 +140,13 @@ export {
   Separator,
   CreateButton,
   Table,
+  TableBase,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
   Template
 }
