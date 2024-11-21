@@ -1,13 +1,14 @@
 'use client'
 
-import { LuCalendar } from 'react-icons/lu'
+import { useState } from 'react'
+import { Calendar as LuCalendar } from 'lucide-react'
 
+import { DateRange } from 'react-day-picker'
 import { format } from 'date-fns'
+
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { cn } from '@/lib/utils'
 import {
   Button,
   Calendar,
@@ -30,30 +31,30 @@ import {
   SelectValue,
   Input
 } from '@/components'
+import { cn } from '@/lib/utils'
+import {
+  formatCurrency,
+  handleCurrencyInput
+} from '@/utils/functions/formatCurrency'
+import {
+  DocumentsFilterDefaultValues,
+  DocumentsFilterFormSchema,
+  DocumentsFilterFormTypes
+} from '@/utils/schemas/forms'
 
-const FormSchema = z.object({
-  dob: z.date({
-    required_error: 'A date of birth is required.'
+const DocumentsFilterForm: React.FC = () => {
+  const [date, setDate] = useState<DateRange | undefined>()
+
+  const form = useForm<DocumentsFilterFormTypes>({
+    resolver: zodResolver(DocumentsFilterFormSchema),
+    defaultValues: DocumentsFilterDefaultValues
   })
-})
 
-interface IDocumentsFilterFormProps {}
+  const watchDocumentType = form.watch('documentType')
+  const isFieldsEnabled = !!watchDocumentType
 
-const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema)
-  })
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  const onSubmit = (data: DocumentsFilterFormTypes) => {
     console.log(data)
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // })
   }
 
   return (
@@ -62,12 +63,13 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-[15px]"
       >
+        {/* ======================================== INPUT PER. DE CRIAÇÃO */}
         <FormField
           control={form.control}
-          name="dob"
+          name="documentPeriod"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Periodo de criação</FormLabel>
+              <FormLabel>Período de criação</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -78,10 +80,19 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
                         !field.value && 'text-muted-foreground'
                       )}
                     >
-                      {field.value ? (
-                        format(field.value, 'PPP')
+                      {field.value?.from ? (
+                        field.value.to ? (
+                          <>
+                            {format(field.value.from, 'dd/MM/yyyy')} -{' '}
+                            {format(field.value.to, 'dd/MM/yyyy')}
+                          </>
+                        ) : (
+                          format(field.value.from, 'dd/MM/yyyy')
+                        )
                       ) : (
-                        <span>Selecionar período</span>
+                        <span className="text-color-legend">
+                          Selecionar período
+                        </span>
                       )}
                       <LuCalendar className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -89,13 +100,16 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date('1900-01-01')
-                    }
                     initialFocus
+                    mode="range"
+                    selected={date}
+                    onSelect={(range) => {
+                      setDate(range)
+                      if (range?.from && range?.to) {
+                        field.onChange(range)
+                      }
+                    }}
+                    numberOfMonths={2}
                   />
                 </PopoverContent>
               </Popover>
@@ -104,25 +118,24 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
           )}
         />
         <Separator className="!my-[10px]" />
+        {/* ======================================== INPUT TIPO DE DOCUMENTO */}
         <FormField
           control={form.control}
-          name="dob"
+          name="documentType"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Tipo de documento</FormLabel>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Selecione uma opção" />
-                </SelectTrigger>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Selecione uma opção" />
+                  </SelectTrigger>
+                </FormControl>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>North America</SelectLabel>
-                    <SelectItem value="est">Eastern (EST)</SelectItem>
-                    <SelectItem value="cst">Central (CST)</SelectItem>
-                    <SelectItem value="mst">Mountain (MST)</SelectItem>
-                    <SelectItem value="pst">Pacific (PST)</SelectItem>
-                    <SelectItem value="akst">Alaska (AKST)</SelectItem>
-                    <SelectItem value="hst">Hawaii (HST)</SelectItem>
+                    <SelectLabel>Tipos</SelectLabel>
+                    <SelectItem value="notaFiscal">Nota Fiscal</SelectItem>
+                    <SelectItem value="recibo">Recibo</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -130,45 +143,82 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({}) => {
             </FormItem>
           )}
         />
+        {/* ======================================== INPUT EMITENTE */}
         <FormField
           control={form.control}
-          name="dob"
+          name="documentIssuer"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Emitente</FormLabel>
-              <Input placeholder="Razão social do emitente" />
+              <FormControl>
+                <Input
+                  placeholder="Razão social do emitente"
+                  {...field}
+                  disabled={!isFieldsEnabled}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        {/* ======================================== INPUT TRIBUTOS TOTAIS */}
         <FormField
           control={form.control}
-          name="dob"
-          render={({ field }) => (
+          name="documentTotalTaxes"
+          render={({ field: { onChange, value, ...field } }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Valor total dos tributos</FormLabel>
-              <Input placeholder="Valor em R$" />
+              <FormControl>
+                <Input
+                  {...field}
+                  disabled={!isFieldsEnabled}
+                  placeholder="R$ 0,00"
+                  onChange={(e) => handleCurrencyInput(e, onChange)}
+                  value={value ? formatCurrency(value) : ''}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        {/* ======================================== INPUT VALOR LÍQUIDO */}
         <FormField
           control={form.control}
-          name="dob"
-          render={({ field }) => (
+          name="documentNetValue"
+          render={({ field: { onChange, value, ...field } }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Valor líquido</FormLabel>
-              <Input placeholder="Valor em R$" />
+              <FormControl>
+                <Input
+                  {...field}
+                  disabled={!isFieldsEnabled}
+                  placeholder="R$ 0,00"
+                  onChange={(e) => handleCurrencyInput(e, onChange)}
+                  value={value ? formatCurrency(value) : ''}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Separator className="!my-[10px]" />
+        {/* ======================================== FOOTER DO FORMULÁRIO  */}
         <div className="flex justify-end gap-[8px]">
-          <Button type="button" variant="outline">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => {
+              form.reset()
+              setDate(undefined)
+            }}
+          >
             Limpar
           </Button>
-          <Button type="submit" variant="primary">
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={!form.formState.isDirty}
+          >
             Aplicar filtro
           </Button>
         </div>

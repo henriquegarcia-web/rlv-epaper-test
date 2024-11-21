@@ -50,14 +50,22 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, active, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
+    const { disabled } = props
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }), {
-          'bg-accent hover:bg-accent hover:text-accent-foreground':
-            active && variant === 'icon',
-          'bg-active-primary text-color-secondary hover:bg-active-primary hover:text-accent-foreground':
-            active && variant === 'menu'
-        })}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          {
+            'bg-accent hover:bg-accent hover:text-accent-foreground':
+              active && variant === 'icon',
+            'bg-active-primary text-color-secondary hover:bg-active-primary hover:text-accent-foreground':
+              active && variant === 'menu'
+          },
+          {
+            'bg-button-disabled text-color-white pointer-events-none cursor-default':
+              disabled
+          }
+        )}
         ref={ref}
         {...props}
       />

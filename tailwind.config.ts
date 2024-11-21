@@ -24,6 +24,7 @@ export default {
         'active-primary': '#caffd6',
         'active-secondary': '#f3f4f6',
         'button-primary': '#05C151',
+        'button-disabled': '#6B7280',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'

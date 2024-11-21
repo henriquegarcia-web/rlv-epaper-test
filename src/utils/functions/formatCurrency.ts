@@ -15,4 +15,13 @@ const formatByCurrency = (value: string) => {
   return numericValue
 }
 
-export { formatCurrency, formatByCurrency }
+const handleCurrencyInput = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  onChange: (value: number) => void
+) => {
+  const value = event.target.value
+  const numericValue = Number(value.replace(/\D/g, '')) / 100 || 0
+  onChange(numericValue)
+}
+
+export { formatCurrency, formatByCurrency, handleCurrencyInput }
