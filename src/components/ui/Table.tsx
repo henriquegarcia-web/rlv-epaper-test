@@ -157,7 +157,6 @@ interface ITableProps {}
 const Table: React.FC<ITableProps> = ({}) => {
   return (
     <TableBase>
-      <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Invoice</TableHead>

@@ -5,7 +5,7 @@ interface IDocumentsListingProps {}
 const DocumentsListing: React.FC<IDocumentsListingProps> = ({}) => {
   return (
     <div className="flex flex-col gap-[15px] w-full h-full">
-      <div className="flex justify-between items-end w-full border border-red-500">
+      <div className="flex justify-between items-end w-full">
         <DocumentsListingFilter />
         <CreateButton label="Novo documento" onClick={() => {}} />
       </div>

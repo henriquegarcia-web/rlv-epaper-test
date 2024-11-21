@@ -4,7 +4,8 @@ import {
   DocumentsListing,
   FilterButton,
   FilterDrawer,
-  Input
+  Input,
+  Separator
 } from '@/components'
 
 interface IDocumentsViewProps {}
@@ -12,8 +13,8 @@ interface IDocumentsViewProps {}
 const DocumentsView: React.FC<IDocumentsViewProps> = ({}) => {
   return (
     <>
-      <div className="flex flex-col w-full h-full pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
-        <div className="flex justify-between w-full pb-[20px] border-b border-b-border-primary">
+      <div className="flex flex-col gap-[10px] w-full h-fit pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
+        <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[8px]">
             <h1 className="text-[24px] leading-[24px] font-bold text-color-secondary">
               Documentos
@@ -29,7 +30,8 @@ const DocumentsView: React.FC<IDocumentsViewProps> = ({}) => {
             <FilterButton />
           </div>
         </div>
-        <div className="flex flex-1 border border-red-500">
+        <Separator className="!my-[10px]" />
+        <div className="flex w-full h-fit">
           <DocumentsListing />
         </div>
       </div>

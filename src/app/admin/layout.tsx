@@ -13,9 +13,11 @@ export default function AdminLayout({
         <main className="flex flex-col items-end w-screen h-scren">
           <Header />
           <SideMenu />
-          <div className="flex flex-col w-admin-content h-admin-content">
-            <section className="flex w-full h-admin-view">{children}</section>
-            <Footer />
+          <div className="flex w-admin-content h-admin-content overflow-auto">
+            <div className="flex flex-col w-full h-fit">
+              <section className="flex w-full h-fit">{children}</section>
+              <Footer />
+            </div>
           </div>
         </main>
       </AdminProviders>
