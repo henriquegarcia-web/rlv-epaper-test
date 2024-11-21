@@ -42,11 +42,11 @@ import {
   DocumentsFilterTypes
 } from '@/utils/schemas/forms'
 
-interface IDocumentsFilterFormProps {
+interface IDocumentsFilterProps {
   handleCloseDrawer: () => void
 }
 
-const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({
+const DocumentsFilter: React.FC<IDocumentsFilterProps> = ({
   handleCloseDrawer
 }) => {
   const [date, setDate] = useState<DateRange | undefined>()
@@ -239,4 +239,4 @@ const DocumentsFilterForm: React.FC<IDocumentsFilterFormProps> = ({
   )
 }
 
-export default DocumentsFilterForm
+export default DocumentsFilter

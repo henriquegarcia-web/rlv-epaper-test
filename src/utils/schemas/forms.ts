@@ -30,14 +30,16 @@ const DocumentsFilterDefaultValues = {
 
 // =============== DOCUMENTS SUB FILTER ===============
 
-const DocumentsSubFilterSchema = z.object({
+const DocumentsListingFilterSchema = z.object({
   documentOrigin: z.string().optional(),
   documentType: z.string().optional()
 })
 
-export type DocumentsSubFilterTypes = z.infer<typeof DocumentsSubFilterSchema>
+export type DocumentsListingFilterTypes = z.infer<
+  typeof DocumentsListingFilterSchema
+>
 
-const DocumentsSubFilterDefaultValues = {
+const DocumentsListingFilterDefaultValues = {
   documentOrigin: '',
   documentType: ''
 }
@@ -45,6 +47,6 @@ const DocumentsSubFilterDefaultValues = {
 export {
   DocumentsFilterSchema,
   DocumentsFilterDefaultValues,
-  DocumentsSubFilterSchema,
-  DocumentsSubFilterDefaultValues
+  DocumentsListingFilterSchema,
+  DocumentsListingFilterDefaultValues
 }

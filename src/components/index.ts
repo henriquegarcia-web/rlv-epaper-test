@@ -2,7 +2,8 @@ import Footer from './layout/Footer'
 import Header from './layout/Header'
 import SideMenu from './layout/SideMenu'
 import FilterDrawer from './layout/FilterDrawer'
-import DocumentsFilterForm from './layout/DocumentsFilterForm'
+import DocumentsFilter from './layout/DocumentsFilter'
+import DocumentsListingFilter from './layout/DocumentsListingFilter'
 import DocumentsListing from './layout/DocumentsListing'
 
 import Logo from './ui/Logo'
@@ -17,6 +18,7 @@ import FilterButton from './ui/FilterButton'
 import BoxInformation from './ui/BoxInformation'
 import Backdrop from './ui/Backdrop'
 import CreateButton from './ui/CreateButton'
+import Table from './ui/Table'
 import Template from './ui/Template'
 
 import {
@@ -69,8 +71,9 @@ export {
   Footer,
   Header,
   SideMenu,
-  DocumentsFilterForm,
+  DocumentsFilter,
   DocumentsListing,
+  DocumentsListingFilter,
   Logo,
   ToggleSideMenu,
   Navigation,
@@ -126,5 +129,6 @@ export {
   SelectScrollDownButton,
   Separator,
   CreateButton,
+  Table,
   Template
 }

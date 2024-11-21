@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  Backdrop,
-  BoxInformation,
-  DocumentsFilterForm,
-  Drawer
-} from '@/components'
+import { Backdrop, BoxInformation, DocumentsFilter, Drawer } from '@/components'
 import { useViews } from '@/contexts/ViewsProvider'
 
 interface IFilterDrawerProps {}
@@ -23,7 +18,7 @@ const FilterDrawer: React.FC<IFilterDrawerProps> = ({}) => {
       >
         <div className="flex flex-col gap-[15px] w-full">
           <BoxInformation info="Selecione o tipo de documento necessário para, a partir dele, selecionar os tipos de índice para a filtragem." />
-          <DocumentsFilterForm handleCloseDrawer={handleToggleFilterDrawer} />
+          <DocumentsFilter handleCloseDrawer={handleToggleFilterDrawer} />
         </div>
       </Drawer>
       {isFilterDrawerOpen && (
