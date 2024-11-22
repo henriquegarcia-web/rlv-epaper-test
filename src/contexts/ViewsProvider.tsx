@@ -12,6 +12,8 @@ export interface IViewsContextData {
   handleToggleSideMenu: () => void
   isFilterDrawerOpen: boolean
   handleToggleFilterDrawer: () => void
+  isCreateDocModalOpen: boolean
+  handleToggleCreateDocModal: () => void
 }
 
 export const ViewsContext = createContext<IViewsContextData>(
@@ -31,12 +33,17 @@ const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
 
   const [activeView, setActiveView] = useState<string>(viewsData[0].path)
+
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState<boolean>(false)
+  const [isCreateDocModalOpen, setIsCreateDocModalOpen] =
+    useState<boolean>(false)
 
   const handleToggleSideMenu = () => setIsSideMenuOpen(!isSideMenuOpen)
   const handleToggleFilterDrawer = () =>
     setIsFilterDrawerOpen(!isFilterDrawerOpen)
+  const handleToggleCreateDocModal = () =>
+    setIsCreateDocModalOpen(!isCreateDocModalOpen)
 
   const handleChangeActiveView = (viewPath: string) => {
     router.push(ADMIN_BASE_URL + viewPath)
@@ -53,9 +60,11 @@ const ViewsProvider = ({ children }: { children: React.ReactNode }) => {
       isSideMenuOpen,
       handleToggleSideMenu,
       isFilterDrawerOpen,
-      handleToggleFilterDrawer
+      handleToggleFilterDrawer,
+      isCreateDocModalOpen,
+      handleToggleCreateDocModal
     }
-  }, [activeView, isSideMenuOpen, isFilterDrawerOpen])
+  }, [activeView, isSideMenuOpen, isFilterDrawerOpen, isCreateDocModalOpen])
 
   return (
     <ViewsContext.Provider value={ViewsContextData}>

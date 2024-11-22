@@ -1,5 +1,5 @@
 import {
-  CreateButton,
+  CreateDocumentButton,
   DocumentsListingFilter,
   DocumentsTable
 } from '@/components'
@@ -11,7 +11,7 @@ const DocumentsListing: React.FC<IDocumentsListingProps> = ({}) => {
     <div className="flex flex-col gap-[15px] w-full h-full">
       <div className="flex justify-between items-end w-full">
         <DocumentsListingFilter />
-        <CreateButton label="Novo documento" onClick={() => {}} />
+        <CreateDocumentButton />
       </div>
       <div className="flex w-full">
         <DocumentsTable />

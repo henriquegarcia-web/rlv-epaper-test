@@ -18,7 +18,7 @@ import Drawer from './ui/Drawer'
 import FilterButton from './ui/FilterButton'
 import BoxInformation from './ui/BoxInformation'
 import Backdrop from './ui/Backdrop'
-import CreateButton from './ui/CreateButton'
+import CreateDocumentButton from './ui/CreateDocumentButton'
 import Template from './ui/Template'
 
 import {
@@ -141,7 +141,7 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
   Separator,
-  CreateButton,
+  CreateDocumentButton,
   Table,
   TableHeader,
   TableBody,
