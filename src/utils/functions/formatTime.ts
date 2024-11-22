@@ -1,17 +1,5 @@
-const monthNames = [
-  'janeiro',
-  'fevereiro',
-  'março',
-  'abril',
-  'maio',
-  'junho',
-  'julho',
-  'agosto',
-  'setembro',
-  'outubro',
-  'novembro',
-  'dezembro'
-]
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 const timestampToDate = (timestamp: number) => {
   const date = new Date(timestamp * 1000)
@@ -33,14 +21,8 @@ const timestampToHours = (timestamp: string): string => {
   return `${hours}:${minutes}`
 }
 
-const timestampToCreationDay = (timestamp: string): string => {
-  const date = new Date(timestamp)
-
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = monthNames[date.getMonth()]
-  const year = String(date.getFullYear())
-
-  return `${day} de ${month} de ${year}`
+const formatDate = (date: Date) => {
+  return format(date, "d 'de' MMMM yyyy", { locale: ptBR })
 }
 
-export { timestampToDate, timestampToHours, timestampToCreationDay }
+export { timestampToDate, timestampToHours, formatDate }

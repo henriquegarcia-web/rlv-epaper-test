@@ -21,6 +21,7 @@ export default {
         'color-secondary': '#3A424E',
         'color-white': '#ffffff',
         'color-legend': '#6B7280',
+        'color-contrast': '#05C151',
         'active-primary': '#caffd6',
         'active-secondary': '#f3f4f6',
         'button-primary': '#05C151',

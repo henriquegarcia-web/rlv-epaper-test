@@ -5,6 +5,7 @@ import FilterDrawer from './layout/FilterDrawer'
 import DocumentsFilter from './layout/DocumentsFilter'
 import DocumentsListingFilter from './layout/DocumentsListingFilter'
 import DocumentsListing from './layout/DocumentsListing'
+import DocumentsTable from './layout/DocumentsTable'
 
 import Logo from './ui/Logo'
 import ToggleSideMenu from './ui/ToggleSideMenu'
@@ -67,7 +68,6 @@ import {
 import { Separator } from './ui/Separator'
 import {
   Table,
-  TableBase,
   TableHeader,
   TableBody,
   TableFooter,
@@ -84,6 +84,7 @@ export {
   DocumentsFilter,
   DocumentsListing,
   DocumentsListingFilter,
+  DocumentsTable,
   Logo,
   ToggleSideMenu,
   Navigation,
@@ -140,7 +141,6 @@ export {
   Separator,
   CreateButton,
   Table,
-  TableBase,
   TableHeader,
   TableBody,
   TableFooter,

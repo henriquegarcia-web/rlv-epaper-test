@@ -1,4 +1,8 @@
-import { CreateButton, DocumentsListingFilter, Table } from '@/components'
+import {
+  CreateButton,
+  DocumentsListingFilter,
+  DocumentsTable
+} from '@/components'
 
 interface IDocumentsListingProps {}
 
@@ -9,8 +13,8 @@ const DocumentsListing: React.FC<IDocumentsListingProps> = ({}) => {
         <DocumentsListingFilter />
         <CreateButton label="Novo documento" onClick={() => {}} />
       </div>
-      <div className="flex w-full border border-blue-500">
-        <Table />
+      <div className="flex w-full">
+        <DocumentsTable />
       </div>
     </div>
   )

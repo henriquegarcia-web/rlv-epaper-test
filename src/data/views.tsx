@@ -1,4 +1,4 @@
-import { LuFileText } from 'react-icons/lu'
+import { FileText } from 'lucide-react'
 import { DocumentsView } from '@/views'
 
 export interface IView {
@@ -17,7 +17,7 @@ const viewsData: IView[] = [
     path: 'documentos',
     label: 'Documentos',
     component: <DocumentsView />,
-    icon: <LuFileText />,
+    icon: <FileText />,
     active: true,
     visible: true
   }
