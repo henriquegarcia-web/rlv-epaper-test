@@ -19,7 +19,7 @@ const buttonVariants = cva(
 
         primary: 'bg-button-primary text-color-white hover:opacity-90',
         outline:
-          'border border-border-primary bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[18px] font-bold text-[14px]',
+          'border border-border-primary bg-foreground text-color-primary hover:bg-accent hover:text-accent-foreground [&_svg]:size-[18px] font-bold text-[14px] disabled:bg-foreground disabled:text-color-primary disabled:opacity-50',
         icon: 'bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[22px]',
         menu: 'justify-start pl-[14px] text-[14px] bg-foreground text-color-secondary hover:bg-accent [&_svg]:size-[16px]',
         circle:

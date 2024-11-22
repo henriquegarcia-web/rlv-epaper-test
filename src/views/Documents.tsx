@@ -13,7 +13,7 @@ interface IDocumentsViewProps {}
 const DocumentsView: React.FC<IDocumentsViewProps> = ({}) => {
   return (
     <>
-      <div className="flex flex-col gap-[10px] w-full h-fit pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
+      <div className="flex flex-col gap-[10px] w-full h-auto pt-[25px] pr-[16px] pb-[20px] pl-[20px] bg-foreground">
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[8px]">
             <h1 className="text-[24px] leading-[24px] font-bold text-color-secondary">

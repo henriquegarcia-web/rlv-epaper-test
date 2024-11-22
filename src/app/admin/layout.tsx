@@ -14,8 +14,8 @@ export default function AdminLayout({
           <Header />
           <SideMenu />
           <div className="flex w-admin-content h-admin-content overflow-auto">
-            <div className="flex flex-col w-full h-fit">
-              <section className="flex w-full h-fit">{children}</section>
+            <div className="flex flex-col w-full h-fit min-h-full">
+              <section className="flex flex-1">{children}</section>
               <Footer />
             </div>
           </div>

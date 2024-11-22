@@ -203,6 +203,10 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 4
+  })
 
   const tableDocuments: ITableDocument[] = useMemo(() => {
     return documentsData.map((doc) => ({
@@ -219,11 +223,18 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = () => {
   const table = useReactTable({
     data: tableDocuments,
     columns,
-    state: { sorting, columnFilters, columnVisibility, rowSelection },
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+      pagination
+    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -231,152 +242,114 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = () => {
   })
 
   return (
-    <Table>
-      <TableHeader>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id} withoutSelect>
-            {headerGroup.headers.map((header) => (
-              <TableHead key={header.id}>
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-              </TableHead>
+    <div className="flex flex-col w-full">
+      <div className="flex w-full">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id} withoutSelect>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
             ))}
-          </TableRow>
-        ))}
-      </TableHeader>
-      <TableBody>
-        {table.getRowModel().rows.length ? (
-          table.getRowModel().rows.map((row) => (
-            <TableRow
-              key={row.id}
-              data-state={row.getIsSelected() && 'selected'}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  Sem resultados
                 </TableCell>
-              ))}
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow withoutSelect>
+              <TableCell>
+                <CompositeCell
+                  label="Total"
+                  value={`${pagination.pageSize} ${
+                    pagination.pageSize > 1 ? 'documentos' : 'documento'
+                  }`}
+                />
+              </TableCell>
+              <TableCell>
+                <CompositeCell
+                  label="nº de emitentes"
+                  value={`${pagination.pageSize} ${
+                    pagination.pageSize > 1 ? 'emitentes' : 'emitente'
+                  }`}
+                />
+              </TableCell>
+              <TableCell>
+                <CompositeCell
+                  label="Total de tributos"
+                  value={formatCurrency(1800)}
+                />
+              </TableCell>
+              <TableCell colSpan={5}>
+                <CompositeCell
+                  label="Total valor líquido"
+                  value={formatCurrency(18000)}
+                />
+              </TableCell>
             </TableRow>
-          ))
-        ) : (
-          <TableRow>
-            <TableCell colSpan={columns.length} className="h-24 text-center">
-              Sem resultados
-            </TableCell>
-          </TableRow>
-        )}
-      </TableBody>
-      <TableFooter>
-        <TableRow withoutSelect>
-          <TableCell>
-            <CompositeCell
-              label="Total"
-              value={`${tableDocuments.length} ${
-                tableDocuments.length > 1 ? 'documentos' : 'documento'
-              }`}
-            />
-          </TableCell>
-          <TableCell>
-            <CompositeCell
-              label="nº de emitentes"
-              value={`${tableDocuments.length} ${
-                tableDocuments.length > 1 ? 'emitentes' : 'emitente'
-              }`}
-            />
-          </TableCell>
-          <TableCell>
-            <CompositeCell
-              label="Total de tributos"
-              value={formatCurrency(1800)}
-            />
-          </TableCell>
-          <TableCell colSpan={3}>
-            <CompositeCell
-              label="Total valor líquido"
-              value={formatCurrency(18000)}
-            />
-          </TableCell>
-          <TableCell className="w-[60px]" />
-        </TableRow>
-      </TableFooter>
-    </Table>
+          </TableFooter>
+        </Table>
+      </div>
+
+      <div className="flex items-center justify-end gap-[12px] pt-[20px]">
+        <span className="mr-[4px] text-[14px] leading-[14px] text-color-legend">
+          Página {(pagination.pageIndex + 1).toString().padStart(2, '0')} de{' '}
+          {Math.ceil(tableDocuments.length / pagination.pageSize)
+            .toString()
+            .padStart(2, '0')}
+        </span>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Anterior
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Próximo
+        </Button>
+      </div>
+    </div>
   )
 }
 
 export default DocumentsTable
-
-// <Table>
-//   <TableHeader>
-//     <TableRow withoutSelect>
-//       <TableHead className="w-[200px]">Nome do documento</TableHead>
-//       <TableHead>Emitente</TableHead>
-//       <TableHead>Valor total dos tributos</TableHead>
-//       <TableHead>Valor líquido</TableHead>
-//       <TableHead>Data de criação</TableHead>
-//       <TableHead>Última atualização</TableHead>
-//       <TableHead className="w-[60px]" />
-//     </TableRow>
-//   </TableHeader>
-//   <TableBody>
-//     {documents.map((document: IDocument) => (
-//       <TableRow key={document.id}>
-//         <TableCell className="w-[200px]">
-//           <div className="flex items-center gap-[10px] [&>svg]:font-[24px] [&>svg]:text-color-contrast">
-//             <FileText />
-//             <CompositeCell
-//               label={`Cód. ${document.code}`}
-//               value={document.name}
-//             />
-//           </div>
-//         </TableCell>
-//         <TableCell>{document.issuer}</TableCell>
-//         <TableCell>{formatCurrency(document.totalTaxValue)}</TableCell>
-//         <TableCell>{formatCurrency(document.netValue)}</TableCell>
-//         <TableCell>{formatDate(document.creationDate)}</TableCell>
-//         <TableCell>{formatDate(document.lastEditDate)}</TableCell>
-//         <TableCell className="w-[60px] text-right">
-//           <Button variant="icon" size="icon" className="hidden sm:flex">
-//             <MoreHorizontal />
-//           </Button>
-//         </TableCell>
-//       </TableRow>
-//     ))}
-//   </TableBody>
-// <TableFooter>
-//   <TableRow withoutSelect>
-//     <TableCell>
-//       <CompositeCell
-//         label="Total"
-//         value={`${documents.length} ${
-//           documents.length > 1 ? 'documentos' : 'documento'
-//         }`}
-//       />
-//     </TableCell>
-//     <TableCell>
-//       <CompositeCell
-//         label="nº de emitentes"
-//         value={`${documents.length} ${
-//           documents.length > 1 ? 'emitentes' : 'emitente'
-//         }`}
-//       />
-//     </TableCell>
-//     <TableCell>
-//       <CompositeCell
-//         label="Total de tributos"
-//         value={formatCurrency(1800)}
-//       />
-//     </TableCell>
-//     <TableCell colSpan={3}>
-//       <CompositeCell
-//         label="Total valor líquido"
-//         value={formatCurrency(18000)}
-//       />
-//     </TableCell>
-//     <TableCell className="w-[60px]" />
-//   </TableRow>
-// </TableFooter>
-// </Table>

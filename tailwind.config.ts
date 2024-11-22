@@ -76,6 +76,7 @@ export default {
       },
       height: {
         'admin-content': 'calc(100vh - 72px)',
+        'admin-view': 'calc(100% - 56px)',
         'drawer-content': 'calc(100% - 145px)'
       },
       width: {
