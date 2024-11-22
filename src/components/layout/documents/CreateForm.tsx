@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 import { useForm } from 'react-hook-form'
@@ -21,7 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
   Separator,
-  Button
+  Button,
+  FileUploadInput
 } from '@/components'
 import { useViews } from '@/contexts/ViewsProvider'
 import {
@@ -39,6 +41,13 @@ const DocumentsCreateForm: React.FC<IDocumentsCreateFormProps> = ({}) => {
     resolver: zodResolver(DocumentCreateFormSchema),
     defaultValues: DocumentCreateFormDefaultValues
   })
+
+  const [file, setFile] = useState<File | null>(null)
+
+  const handleFileChange = (newFile: File | null) => {
+    setFile(newFile)
+    // Aqui você pode realizar outras ações com o arquivo, como enviá-lo para um servidor
+  }
 
   const onSubmit = (data: DocumentCreateFormTypes) => {
     console.log(data)
@@ -118,6 +127,7 @@ const DocumentsCreateForm: React.FC<IDocumentsCreateFormProps> = ({}) => {
                 </FormItem>
               )}
             />
+            <FileUploadInput onFileChange={handleFileChange} value={file} />
             <Separator className="!my-[10px]" />
             <div className="flex justify-end gap-[8px]">
               <Button

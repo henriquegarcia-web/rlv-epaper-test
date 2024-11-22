@@ -21,6 +21,7 @@ import FilterButton from './ui/FilterButton'
 import BoxInformation from './ui/BoxInformation'
 import Backdrop from './ui/Backdrop'
 import CreateDocumentButton from './ui/CreateDocumentButton'
+import FileUploadInput from './ui/FileUploadInput'
 import Template from './ui/Template'
 
 import {
@@ -80,6 +81,7 @@ import {
   CompositeCell
 } from './ui/Table'
 import { Checkbox } from './ui/Checkbox'
+import { Progress } from './ui/Progress'
 
 export {
   Footer,
@@ -155,5 +157,7 @@ export {
   TableCaption,
   CompositeCell,
   Checkbox,
+  Progress,
+  FileUploadInput,
   Template
 }
