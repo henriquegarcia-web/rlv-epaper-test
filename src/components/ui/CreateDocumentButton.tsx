@@ -1,12 +1,14 @@
+'use client'
+
 import { Plus } from 'lucide-react'
 
-import { Button, Modal } from '@/components'
+import { Button, DocumentsCreateForm, Modal } from '@/components'
 import { useViews } from '@/contexts/ViewsProvider'
 
 interface ICreateButtonProps {}
 
 const CreateButton: React.FC<ICreateButtonProps> = ({}) => {
-  const { isCreateDocModalOpen, handleToggleCreateDocModal } = useViews()
+  const { handleToggleCreateDocModal } = useViews()
 
   return (
     <>
@@ -30,14 +32,7 @@ const CreateButton: React.FC<ICreateButtonProps> = ({}) => {
         <Plus />
       </Button>
 
-      <Modal
-        title="Criar novo documento"
-        legend="Insira os dados necessários para criar"
-        isModalOpen={isCreateDocModalOpen}
-        handleCloseModal={handleToggleCreateDocModal}
-      >
-        <div></div>
-      </Modal>
+      <DocumentsCreateForm />
     </>
   )
 }

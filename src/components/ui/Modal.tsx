@@ -32,7 +32,7 @@ const Modal: React.FC<IModalProps> = ({
     <>
       <div
         className={cn(
-          '!z-[150] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full flex flex-col gap-[10px] w-full py-[28px] px-[22px] rounded-sm border-r border-r-border-primary bg-foreground transition-all duration-200',
+          '!z-[150] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[60%] flex flex-col gap-[25px] w-full py-[28px] px-[22px] rounded-sm border-r border-r-border-primary bg-foreground transition-all duration-200',
           {
             hidden: !isModalOpen,
             flex: isModalOpen,
@@ -60,7 +60,7 @@ const Modal: React.FC<IModalProps> = ({
           </div>
         </div>
         <div
-          className="flex w-ful"
+          className="flex w-full"
           style={{ maxHeight: 'calc(100vh - 145px)' }}
         >
           <div

@@ -2,10 +2,12 @@ import Footer from './layout/Footer'
 import Header from './layout/Header'
 import SideMenu from './layout/SideMenu'
 import FilterDrawer from './layout/FilterDrawer'
-import DocumentsFilter from './layout/DocumentsFilter'
-import DocumentsListingFilter from './layout/DocumentsListingFilter'
-import DocumentsListing from './layout/DocumentsListing'
-import DocumentsTable from './layout/DocumentsTable'
+
+import DocumentsFilter from './layout/documents/Filter'
+import DocumentsListingFilter from './layout/documents/ListingFilter'
+import DocumentsListing from './layout/documents/Listing'
+import DocumentsTable from './layout/documents/Table'
+import DocumentsCreateForm from './layout/documents/CreateForm'
 
 import Logo from './ui/Logo'
 import ToggleSideMenu from './ui/ToggleSideMenu'
@@ -87,6 +89,7 @@ export {
   DocumentsListing,
   DocumentsListingFilter,
   DocumentsTable,
+  DocumentsCreateForm,
   Logo,
   ToggleSideMenu,
   Navigation,
