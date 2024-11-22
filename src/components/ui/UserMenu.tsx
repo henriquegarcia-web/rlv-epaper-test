@@ -29,7 +29,7 @@ const UserMenu: React.FC<IUserMenuProps> = ({}) => {
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-[10px] h-full px-[10px] rounded-[4px] border border-border-primary cursor-pointer">
           <Avatar name={userName} />
-          <div className="hidden flex-col sm:flex">
+          <div className="hidden flex-col sm:flex gap-[2px]">
             <b className="text-[14px] leading-[14px] text-color-primary">
               {userName}
             </b>

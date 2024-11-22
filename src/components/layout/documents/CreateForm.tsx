@@ -46,7 +46,6 @@ const DocumentsCreateForm: React.FC<IDocumentsCreateFormProps> = ({}) => {
 
   const handleFileChange = (newFile: File | null) => {
     setFile(newFile)
-    // Aqui você pode realizar outras ações com o arquivo, como enviá-lo para um servidor
   }
 
   const onSubmit = (data: DocumentCreateFormTypes) => {

@@ -1,11 +1,16 @@
 'use client'
 
-import { useEffect, useRef, forwardRef, useState } from 'react'
+import {
+  useEffect,
+  useRef,
+  forwardRef,
+  useState,
+  useImperativeHandle
+} from 'react'
 import { FileUp, X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { Button, Progress } from '@/components'
-import { LuUpload, LuFile, LuX } from 'react-icons/lu'
 
 export interface FileUploadInputProps
   extends Omit<
@@ -16,29 +21,65 @@ export interface FileUploadInputProps
   value?: File | null
 }
 
-const FileUploadInput = forwardRef<HTMLInputElement, FileUploadInputProps>(
+const MAX_FILE_SIZE_MB = 10
+
+interface FileUploadInputHandle extends HTMLInputElement {
+  clear: () => void
+}
+
+const FileUploadInput = forwardRef<FileUploadInputHandle, FileUploadInputProps>(
   ({ className, onFileChange, value, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const [progress, setProgress] = useState(13)
+    const [progress, setProgress] = useState(0)
+
+    useImperativeHandle<any, any>(
+      ref,
+      () => ({
+        ...inputRef.current,
+        clear: () => {
+          if (inputRef.current) {
+            inputRef.current.value = ''
+          }
+          onFileChange(null)
+          setError(null)
+          setProgress(0)
+        }
+      }),
+      [onFileChange]
+    )
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
+
       if (file) {
         if (file.type !== 'application/pdf') {
           setError('Apenas arquivos PDF são permitidos.')
           onFileChange(null)
           return
         }
-        setLoading(true)
+
+        if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+          setError(`O arquivo excede o limite de ${MAX_FILE_SIZE_MB} MB.`)
+          onFileChange(null)
+          return
+        }
+
         setError(null)
-        // Simula um carregamento
-        setTimeout(() => {
-          setLoading(false)
-          onFileChange(file)
-        }, 1000)
+        setLoading(true)
+
+        let progressValue = 0
+        const interval = setInterval(() => {
+          progressValue += 10
+          setProgress(progressValue)
+          if (progressValue >= 100) {
+            clearInterval(interval)
+            setLoading(false)
+            onFileChange(file)
+          }
+        }, 100)
       } else {
         onFileChange(null)
       }
@@ -50,12 +91,8 @@ const FileUploadInput = forwardRef<HTMLInputElement, FileUploadInputProps>(
       }
       onFileChange(null)
       setError(null)
+      setProgress(0)
     }
-
-    useEffect(() => {
-      const timer = setTimeout(() => setProgress(66), 500)
-      return () => clearTimeout(timer)
-    }, [])
 
     return (
       <div className="flex flex-col gap-[20px]">
@@ -81,21 +118,14 @@ const FileUploadInput = forwardRef<HTMLInputElement, FileUploadInputProps>(
               Procurar e selecionar arquivo
             </Button>
             <p className="text-[13px] leading-[13px] text-color-legend">
-              Tamanho max.: 10MB
+              Tamanho max.: {MAX_FILE_SIZE_MB} MB
             </p>
 
             <input
               type="file"
               accept=".pdf"
               className="hidden"
-              ref={(node) => {
-                if (typeof ref === 'function') {
-                  ref(node)
-                } else if (ref) {
-                  ref.current = node
-                }
-                inputRef.current = node
-              }}
+              ref={inputRef}
               onChange={handleFileChange}
               {...props}
             />
@@ -110,10 +140,14 @@ const FileUploadInput = forwardRef<HTMLInputElement, FileUploadInputProps>(
               </span>
               <div className="flex flex-1 flex-col justify-between h-full py-[2px]">
                 <b className="text-[14px] leading-[14px] font-[500] text-color-secondary">
-                  {value?.name}
+                  {value?.name || 'Carregando...'}
                 </b>
                 <p className="text-[12px] leading-[12px] text-color-legend">
-                  {value?.size}MB
+                  {value
+                    ? value.size < 1024 * 1024
+                      ? `${(value.size / 1024).toFixed(1)} KB`
+                      : `${(value.size / (1024 * 1024)).toFixed(1)} MB`
+                    : ''}
                 </p>
                 <Progress value={progress} className="w-full" />
               </div>
@@ -138,6 +172,7 @@ const FileUploadInput = forwardRef<HTMLInputElement, FileUploadInputProps>(
     )
   }
 )
+
 FileUploadInput.displayName = 'FileUploadInput'
 
 export default FileUploadInput

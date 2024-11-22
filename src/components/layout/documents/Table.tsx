@@ -205,7 +205,7 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = () => {
   const [rowSelection, setRowSelection] = useState({})
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 4
+    pageSize: 6
   })
 
   const tableDocuments: ITableDocument[] = useMemo(() => {

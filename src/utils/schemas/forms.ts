@@ -47,8 +47,8 @@ const DocumentsListingFilterDefaultValues = {
 // =============== DOCUMENTS SUB FILTER ===============
 
 const DocumentCreateFormSchema = z.object({
-  documentOrigin: z.string().optional(),
-  documentType: z.string().optional()
+  documentOrigin: z.string(),
+  documentType: z.string()
 })
 
 export type DocumentCreateFormTypes = z.infer<typeof DocumentCreateFormSchema>
