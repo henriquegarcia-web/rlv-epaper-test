@@ -18,6 +18,7 @@ export interface IDocument {
 }
 
 export interface ITableDocument {
+  id: string
   name: string
   issuer: string
   totalTaxValue: number
