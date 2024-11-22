@@ -3,7 +3,7 @@
 > Desenvolvido por: **Henrique Garcia** <br/>
 > Empresa: **[RLV Tecnologia](https://rlvtecnologia.com.br)** <br/>
 > Data de início: **18/11/2024** <br/>
-> Data de término: **Em desenvolvimento**
+> Data de término: **22/11/2024**
 
 ## Visão Geral
 
