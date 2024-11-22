@@ -1,9 +1,14 @@
+'use client'
+
+import { useRef } from 'react'
 import { X } from 'lucide-react'
 
 import { Backdrop } from '@/components'
+import useScrollbar from '@/hooks/useScrollbar'
 import { cn } from '@/lib/utils'
 
 interface IModalProps {
+  size?: 'default' | 'large'
   title: string
   legend: string
   isModalOpen: boolean
@@ -12,20 +17,27 @@ interface IModalProps {
 }
 
 const Modal: React.FC<IModalProps> = ({
+  size = 'default',
   title,
   legend,
   isModalOpen,
   handleCloseModal,
   children
 }) => {
+  const drawerContentRef = useRef(null)
+
+  const [containerHasScrollbar] = useScrollbar(drawerContentRef)
+
   return (
     <>
       <div
         className={cn(
-          '!z-[150] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full flex flex-col gap-[10px] w-full max-w-[600px] py-[28px] px-[22px] rounded-sm border-r border-r-border-primary bg-foreground transition-all duration-200',
+          '!z-[150] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-full flex flex-col gap-[10px] w-full py-[28px] px-[22px] rounded-sm border-r border-r-border-primary bg-foreground transition-all duration-200',
           {
             hidden: !isModalOpen,
-            flex: isModalOpen
+            flex: isModalOpen,
+            'max-w-[700px]': size === 'default',
+            'max-w-[1200px]': size === 'large'
           }
         )}
       >
@@ -45,6 +57,19 @@ const Modal: React.FC<IModalProps> = ({
             >
               <X />
             </button>
+          </div>
+        </div>
+        <div
+          className="flex w-ful"
+          style={{ maxHeight: 'calc(100vh - 145px)' }}
+        >
+          <div
+            ref={drawerContentRef}
+            className={cn('flex w-full overflow-auto', {
+              'pr-[6px]': containerHasScrollbar
+            })}
+          >
+            {children}
           </div>
         </div>
       </div>
