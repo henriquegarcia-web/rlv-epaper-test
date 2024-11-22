@@ -8,7 +8,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  Button
+  Button,
+  CompositeCell
 } from '@/components'
 import { formatCurrency } from '@/utils/functions/formatCurrency'
 import { formatDate } from '@/utils/functions/formatTime'
@@ -22,7 +23,7 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = ({}) => {
   return (
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow withoutSelect>
           <TableHead className="w-[200px]">Nome do documento</TableHead>
           <TableHead>Emitente</TableHead>
           <TableHead>Valor total dos tributos</TableHead>
@@ -58,7 +59,7 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = ({}) => {
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow>
+        <TableRow withoutSelect>
           <TableCell>
             <CompositeCell
               label="Total"
@@ -97,19 +98,3 @@ const DocumentsTable: React.FC<IDocumentsTableProps> = ({}) => {
 export default DocumentsTable
 
 // ============================================== COMPOSITE CELL
-
-interface ICompositeCellProps {
-  label: string
-  value: string
-}
-
-const CompositeCell: React.FC<ICompositeCellProps> = ({ label, value }) => {
-  return (
-    <div className="flex flex-1 flex-col gap-[4px]">
-      <p className="text-[12px] leading-[12px] text-color-legend">{label}</p>
-      <b className="text-[14px] leading-[14px] font-[600] text-color-secondary">
-        {value}
-      </b>
-    </div>
-  )
-}

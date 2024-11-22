@@ -6,7 +6,7 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
+  <div className="relative w-full overflow-auto rounded-[6px] border border-border-primary">
     <table
       ref={ref}
       className={cn('w-full caption-bottom text-sm', className)}
@@ -51,20 +51,28 @@ const TableFooter = React.forwardRef<
 ))
 TableFooter.displayName = 'TableFooter'
 
-const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={cn(
-      'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
-      className
-    )}
-    {...props}
-  />
-))
+interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  withoutSelect?: boolean
+}
+
+const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
+  ({ className, withoutSelect = false, ...props }, ref) => (
+    <tr
+      ref={ref}
+      className={cn(
+        'border-b transition-colors data-[state=selected]:bg-muted',
+        {
+          'hover:bg-muted/50': !withoutSelect
+        },
+        className
+      )}
+      {...props}
+    />
+  )
+)
 TableRow.displayName = 'TableRow'
+
+export default TableRow
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
@@ -108,6 +116,23 @@ const TableCaption = React.forwardRef<
 ))
 TableCaption.displayName = 'TableCaption'
 
+interface ICompositeCellProps {
+  label: string
+  value: string
+}
+
+const CompositeCell: React.FC<ICompositeCellProps> = ({ label, value }) => {
+  return (
+    <div className="flex flex-1 flex-col gap-[5px]">
+      <p className="text-[12px] leading-[12px] text-color-legend">{label}</p>
+      <b className="text-[14px] leading-[14px] font-[600] text-color-secondary">
+        {value}
+      </b>
+    </div>
+  )
+}
+CompositeCell.displayName = 'CompositeCell'
+
 export {
   Table,
   TableHeader,
@@ -116,5 +141,6 @@ export {
   TableHead,
   TableRow,
   TableCell,
-  TableCaption
+  TableCaption,
+  CompositeCell
 }

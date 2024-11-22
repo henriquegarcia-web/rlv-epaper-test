@@ -74,7 +74,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  TableCaption
+  TableCaption,
+  CompositeCell
 } from './ui/Table'
 
 export {
@@ -148,5 +149,6 @@ export {
   TableRow,
   TableCell,
   TableCaption,
+  CompositeCell,
   Template
 }
