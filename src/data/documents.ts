@@ -17,6 +17,15 @@ export interface IDocument {
   documentType: IDocumentOption
 }
 
+export interface ITableDocument {
+  name: string
+  issuer: string
+  totalTaxValue: number
+  netValue: number
+  creationDate: Date
+  lastEditDate: Date
+}
+
 const documentOrigins: IDocumentOption[] = [
   {
     id: 'origin_digitalized',

@@ -71,12 +71,12 @@ export default {
         'admin-sidemenu': '64px',
         'admin-sidemenu-open': '252px',
         'admin-sidemenu-open-mobile': '364px',
-        'admin-filterdrawer-open': '390px'
+        'admin-filterdrawer-open': '390px',
+        fit: 'fit-content'
       },
       height: {
         'admin-content': 'calc(100vh - 72px)',
-        'drawer-content': 'calc(100% - 145px)',
-        fit: 'fit-content'
+        'drawer-content': 'calc(100% - 145px)'
       },
       width: {
         'admin-content': 'calc(100% - 64px)'

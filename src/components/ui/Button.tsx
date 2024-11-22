@@ -23,7 +23,9 @@ const buttonVariants = cva(
         icon: 'bg-foreground hover:bg-accent hover:text-accent-foreground [&_svg]:size-[22px]',
         menu: 'justify-start pl-[14px] text-[14px] bg-foreground text-color-secondary hover:bg-accent [&_svg]:size-[16px]',
         circle:
-          'bg-button-primary hover:opacity-85 [&_svg]:text-color-white [&_svg]:size-[26px]'
+          'bg-button-primary hover:opacity-85 [&_svg]:text-color-white [&_svg]:size-[26px]',
+        filter:
+          'hover:bg-foreground hover:text-color-legend [&_svg]:size-[18px]'
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -33,7 +35,8 @@ const buttonVariants = cva(
         outline: 'h-[40px] px-[14px]',
         icon: 'h-[40px] w-[40px]',
         menu: 'h-[40px] w-full',
-        circle: 'h-[56px] w-[56px] rounded-[100px]'
+        circle: 'h-[56px] w-[56px] rounded-[100px]',
+        filter: 'p-0'
       }
     },
     defaultVariants: {

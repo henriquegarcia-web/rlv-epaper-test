@@ -77,6 +77,7 @@ import {
   TableCaption,
   CompositeCell
 } from './ui/Table'
+import { Checkbox } from './ui/Checkbox'
 
 export {
   Footer,
@@ -150,5 +151,6 @@ export {
   TableCell,
   TableCaption,
   CompositeCell,
+  Checkbox,
   Template
 }
